@@ -10,7 +10,7 @@ Changelog
 4.1.0 (22.07.2026)
 ----------
 
-* Added LOCALIZE_MENU_ITEMS setting for i18n locale-aware menus (fixes [#242](https://github.com/jazzband/wagtailmenus/issues/242)).
+* Added LOCALIZE_MENU_ITEMS setting for i18n locale-aware menus (fixes [#242](https://github.com/wagtail-nest/wagtailmenus/issues/242)).
 * Added testing for Wagtail 7.4 (LTS).
 * Removed support for Wagtail 6.3 LTS, 7.1 and 7.2 (end of life).
 * Removed support for Django 5.1 (end of life).
@@ -25,7 +25,7 @@ Changelog
 4.0.6 (14.02.2026)
 ----------
 
-* Fix TypeError with Django 6.0+ [#522](https://github.com/jazzband/wagtailmenus/pull/522).
+* Fix TypeError with Django 6.0+ [#522](https://github.com/wagtail-nest/wagtailmenus/pull/522).
 * Add testing for Django 6.0
 
 4.0.5 (29.11.2025)
@@ -40,7 +40,7 @@ Changelog
 4.0.4 (21.06.2025)
 ----------
 
-* Fix Pypi Project links are broken, Read the Docs not updated [#488](https://github.com/jazzband/wagtailmenus/issues/488)
+* Fix Pypi Project links are broken, Read the Docs not updated [#488](https://github.com/wagtail-nest/wagtailmenus/issues/488)
 
 4.0.3 (26.05.2025)
 ----------
@@ -55,7 +55,7 @@ Changelog
 
 * Update the testing environment to test Wagtail 6.3 and Django 5.1
 * Add conditional support for Wagtail 6.3 templates.
-* Fix Italian translation [#499](github.com/jazzband/wagtailmenus/pull/499).
+* Fix Italian translation [#499](https://github.com/wagtail-nest/wagtailmenus/pull/499).
 
 4.0.1 (04.08.2024)
 ----------
@@ -66,30 +66,30 @@ Changelog
 4.0.0 (28.02.2024)
 ----------
 
-* 🐛 FIX: Versions on docs index by @MrCordeiro in <https://github.com/jazzband/wagtailmenus/pull/455>
-* Support/wagtail-50 by @katdom13 in <https://github.com/jazzband/wagtailmenus/pull/457>
-* Fix/settings panel append by @benfroelich in <https://github.com/jazzband/wagtailmenus/pull/441>
-* add indonesian translation by @kiraware in <https://github.com/jazzband/wagtailmenus/pull/458>
-* Independent wagtail_modeladmin support for Wagtail 5.1 by @dkirkham in <https://github.com/jazzband/wagtailmenus/pull/461>
-* Release prep/3.1.9 by @MrCordeiro in <https://github.com/jazzband/wagtailmenus/pull/462>
-* [pre-commit.ci] pre-commit autoupdate by @pre-commit-ci in <https://github.com/jazzband/wagtailmenus/pull/463>
-* Wagtail 5.2 by @katdom13 in <https://github.com/jazzband/wagtailmenus/pull/465>
-* Add Ukrainian translation by @yarickprih in <https://github.com/jazzband/wagtailmenus/pull/466>
-* Dutch translation by @MaartenUreel in <https://github.com/jazzband/wagtailmenus/pull/469>
-* Upgrade GitHub Actions by @cclauss in <https://github.com/jazzband/wagtailmenus/pull/473>
-* 💥BREAKING: Migrate from ModelAdmin to Snippets by @dkirkham in <https://github.com/jazzband/wagtailmenus/pull/472>
-* 👷: update gh actions by @schlich in <https://github.com/jazzband/wagtailmenus/pull/477>
-* 👷: update set-output command by @schlich in <https://github.com/jazzband/wagtailmenus/pull/478>
-* Update package and testing configurations by @dkirkham in <https://github.com/jazzband/wagtailmenus/pull/481>
-* ModelAdmin to Snippets Documentation Update by @dkirkham in <https://github.com/jazzband/wagtailmenus/pull/483>
-* Rename admin module by @dkirkham in <https://github.com/jazzband/wagtailmenus/pull/482>
-* 🔒: add bandit code scanner by @schlich in <https://github.com/jazzband/wagtailmenus/pull/479>
+* 🐛 FIX: Versions on docs index by @MrCordeiro in <https://github.com/wagtail-nest/wagtailmenus/pull/455>
+* Support/wagtail-50 by @katdom13 in <https://github.com/wagtail-nest/wagtailmenus/pull/457>
+* Fix/settings panel append by @benfroelich in <https://github.com/wagtail-nest/wagtailmenus/pull/441>
+* add indonesian translation by @kiraware in <https://github.com/wagtail-nest/wagtailmenus/pull/458>
+* Independent wagtail_modeladmin support for Wagtail 5.1 by @dkirkham in <https://github.com/wagtail-nest/wagtailmenus/pull/461>
+* Release prep/3.1.9 by @MrCordeiro in <https://github.com/wagtail-nest/wagtailmenus/pull/462>
+* [pre-commit.ci] pre-commit autoupdate by @pre-commit-ci in <https://github.com/wagtail-nest/wagtailmenus/pull/463>
+* Wagtail 5.2 by @katdom13 in <https://github.com/wagtail-nest/wagtailmenus/pull/465>
+* Add Ukrainian translation by @yarickprih in <https://github.com/wagtail-nest/wagtailmenus/pull/466>
+* Dutch translation by @MaartenUreel in <https://github.com/wagtail-nest/wagtailmenus/pull/469>
+* Upgrade GitHub Actions by @cclauss in <https://github.com/wagtail-nest/wagtailmenus/pull/473>
+* 💥BREAKING: Migrate from ModelAdmin to Snippets by @dkirkham in <https://github.com/wagtail-nest/wagtailmenus/pull/472>
+* 👷: update gh actions by @schlich in <https://github.com/wagtail-nest/wagtailmenus/pull/477>
+* 👷: update set-output command by @schlich in <https://github.com/wagtail-nest/wagtailmenus/pull/478>
+* Update package and testing configurations by @dkirkham in <https://github.com/wagtail-nest/wagtailmenus/pull/481>
+* ModelAdmin to Snippets Documentation Update by @dkirkham in <https://github.com/wagtail-nest/wagtailmenus/pull/483>
+* Rename admin module by @dkirkham in <https://github.com/wagtail-nest/wagtailmenus/pull/482>
+* 🔒: add bandit code scanner by @schlich in <https://github.com/wagtail-nest/wagtailmenus/pull/479>
 
 3.1.9 (23.09.2023)
 ----------
 
-* Fix [#445](https://github.com/jazzband/wagtailmenus/issues/445) which caused discrepancy between compatibility on website and readme.
-* Fix [460](https://github.com/jazzband/wagtailmenus/issues/460) by replacing `wagtail.contrib.modeladmin` with `wagtail_modeladmin`.
+* Fix [#445](https://github.com/wagtail-nest/wagtailmenus/issues/445) which caused discrepancy between compatibility on website and readme.
+* Fix [460](https://github.com/wagtail-nest/wagtailmenus/issues/460) by replacing `wagtail.contrib.modeladmin` with `wagtail_modeladmin`.
 * Update testing for Wagtail 5.0 and Django 4.2.
 * Dropped support for Python 3.7.
 
@@ -99,7 +99,7 @@ Changelog
 * Fix bug that prevented the `show_menu_heading` from working on default flat menus.
 * Fix `autopopulate_main_menus` instructions.
 * Fix docs examples for registering hooks.
-* Fix [#435](https://github.com/jazzband/wagtailmenus/issues/435) and [#452](https://github.com/jazzband/wagtailmenus/issues/452), which were causing extra migrations on the id fields.
+* Fix [#435](https://github.com/wagtail-nest/wagtailmenus/issues/435) and [#452](https://github.com/wagtail-nest/wagtailmenus/issues/452), which were causing extra migrations on the id fields.
 
 3.1.7 (17.04.2023)
 ----------
@@ -135,7 +135,7 @@ Changelog
 
 * Added support for Wagtail >3.0.
 * Updated Travis/tox test settings to test against Wagtail 3.0.
-* Fix: [#421](https://github.com/jazzband/wagtailmenus/issues/421), which prevented creating or editing menus in wagtail 3.0.
+* Fix: [#421](https://github.com/wagtail-nest/wagtailmenus/issues/421), which prevented creating or editing menus in wagtail 3.0.
 
 3.1.1 (25.04.2022)
 ------------------
@@ -178,14 +178,14 @@ Changelog
 * Added support for Python 3.8.
 * Removed support for `get_sub_menu_templates()` methods that do not accept a **level** argument.
 * Removed recommendation / automatic integration for `wagtail-condensedinlinepanel`.
-* Fix: [#329](https://github.com/jazzband/wagtailmenus/issues/329), which prevented level-specific template naming from working as specified in the docs.
-* Fix: [#323](https://github.com/jazzband/wagtailmenus/issues/323), which prevented `StreamField` from working properly when creating or editing menus with custom item models.
+* Fix: [#329](https://github.com/wagtail-nest/wagtailmenus/issues/329), which prevented level-specific template naming from working as specified in the docs.
+* Fix: [#323](https://github.com/wagtail-nest/wagtailmenus/issues/323), which prevented `StreamField` from working properly when creating or editing menus with custom item models.
 
 2.13.1 (21.05.2019)
 -------------------
 
-* Fix: [#329](https://github.com/jazzband/wagtailmenus/issues/329), which prevented level-specific template naming from working as specified in the docs.
-* Fix: [#323](https://github.com/jazzband/wagtailmenus/issues/323), which prevented `StreamField` from working properly when creating or editing menus with custom item models.
+* Fix: [#329](https://github.com/wagtail-nest/wagtailmenus/issues/329), which prevented level-specific template naming from working as specified in the docs.
+* Fix: [#323](https://github.com/wagtail-nest/wagtailmenus/issues/323), which prevented `StreamField` from working properly when creating or editing menus with custom item models.
 
 2.13 (16.03.2019)
 -----------------
@@ -205,8 +205,8 @@ Changelog
 2.12.1 (XX.XX.XXXX)
 -------------------
 
-* Fix: [#329](https://github.com/jazzband/wagtailmenus/issues/329), which prevented level-specific template naming from working as specified in the docs.
-* Fix: [#323](https://github.com/jazzband/wagtailmenus/issues/323), which prevented `StreamField` from working properly when creating or editing menus with custom item models.
+* Fix: [#329](https://github.com/wagtail-nest/wagtailmenus/issues/329), which prevented level-specific template naming from working as specified in the docs.
+* Fix: [#323](https://github.com/wagtail-nest/wagtailmenus/issues/323), which prevented `StreamField` from working properly when creating or editing menus with custom item models.
 
 2.12 (17.11.2018)
 -----------------
@@ -256,7 +256,7 @@ indication of what the method does.
 2.10.1 (XX.XX.XXXX)
 -------------------
 
-* Fix: [#329](https://github.com/jazzband/wagtailmenus/issues/329), which prevented level-specific template naming from working as specified in the docs.
+* Fix: [#329](https://github.com/wagtail-nest/wagtailmenus/issues/329), which prevented level-specific template naming from working as specified in the docs.
 
 2.10.0 (14.06.2018)
 -------------------

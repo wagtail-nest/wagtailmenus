@@ -3,7 +3,7 @@ Welcome to the wagtailmenus documentation!
 ==========================================
 
 wagtailmenus is an open-source extension for `Wagtail CMS
-<https://github.com/torchbox/wagtail>`_ to help you define, manage and render menus in a consistent, yet flexible way.
+<https://github.com/wagtail/wagtail>`_ to help you define, manage and render menus in a consistent, yet flexible way.
 
 The current version is tested for compatibility with the following:
 
@@ -13,7 +13,7 @@ The current version is tested for compatibility with the following:
 
 To find out more about what wagtailmenus does and why, see :doc:`overview`
 
-To view the code, open an issue, or submit a pull request, view the `wagtailmenus project on github <https://github.com/jazzband/wagtailmenus>`_.
+To view the code, open an issue, or submit a pull request, view the `wagtailmenus project on github <https://github.com/wagtail-nest/wagtailmenus>`_.
 
 
 Below are some useful links to help you get you started:

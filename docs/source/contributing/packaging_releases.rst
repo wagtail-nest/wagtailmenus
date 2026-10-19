@@ -7,16 +7,16 @@ Preparing for a new release
 
 Follow the steps outlined below to prep changes in your fork:
 
-1.  Merge any changes from ``upstream/master`` into your fork's ``master``
+1.  Merge any changes from ``upstream/main`` into your fork's ``main``
     branch.
 
     .. code-block:: console
 
         git fetch upstream
-        git checkout master
-        git merge upstream/master
+        git checkout main
+        git merge upstream/main
 
-2.  From your fork's ``master`` branch, create a new branch for preparing the
+2.  From your fork's ``main`` branch, create a new branch for preparing the
     release, e.g.:
 
     .. code-block:: console
@@ -82,7 +82,7 @@ Follow the steps outlined below to prep changes in your fork:
         git push
 
 13. Submit your changes as a PR to the main repository via
-    https://github.com/jazzband/wagtailmenus/compare
+    https://github.com/wagtail-nest/wagtailmenus/compare
 
 
 Packaging and pushing to PyPi
@@ -90,17 +90,17 @@ Packaging and pushing to PyPi
 
 When satisfied with the PR for preparing the files:
 
-1.  From https://github.com/jazzband/wagtailmenus/pulls, merge the PR into the
-    ``master`` branch using the "merge commit" option.
+1.  From https://github.com/wagtail-nest/wagtailmenus/pulls, merge the PR into the
+    ``main`` branch using the "merge commit" option.
 
-2.  Locally, ``cd`` to the project's root directory, checkout the ``master``
+2.  Locally, ``cd`` to the project's root directory, checkout the ``main``
     branch, and ensure the local copy is up-to-date: 
 
     .. code-block:: console
         
         source .venv/bin/activate
         cd ../path-to-original-repo
-        git checkout master
+        git checkout main
         git pull
 
 3.  Ensure dependencies are up-to-date by running:
@@ -117,7 +117,7 @@ When satisfied with the PR for preparing the files:
         git push --tags
 
 5. Edit the release notes for the release from
-    https://github.com/jazzband/wagtailmenus/releases, by copying and pasting
+    https://github.com/wagtail-nest/wagtailmenus/releases, by copying and pasting
     the content from ``docs/releases/x.x.x.rst``
 
 6. Crack open a beer - you earned it!
