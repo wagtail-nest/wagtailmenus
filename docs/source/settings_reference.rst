@@ -424,7 +424,7 @@ setting it to ``False`` even when ``WAGTAIL_I18N_ENABLED`` is ``True``.
 When active, menu items stored against a default-locale page will be displayed
 using the equivalent page in the active locale (if a translation exists).
 If no translation is found for the active locale, the original page is used as
-a fallback. The localization is applied **at render time only** — the stored
+a fallback. The localisation is applied **at render time only** — the stored
 ``link_page`` foreign key on the menu item is never modified.
 
 .. NOTE::
