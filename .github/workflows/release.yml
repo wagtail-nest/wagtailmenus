@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    if: github.repository == 'jazzband/wagtailmenus'
+    if: ${{ github.repository == 'wagtail-nest/wagtailmenus' }}
     runs-on: ubuntu-latest
 
     steps:
@@ -29,9 +29,3 @@ jobs:
           python setup.py --version
           python setup.py sdist --format=gztar bdist_wheel
           twine check dist/*
-      - name: Upload packages to Jazzband
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          user: jazzband
-          password: ${{ secrets.JAZZBAND_RELEASE_KEY }}
-          repository-url: https://jazzband.co/projects/wagtailmenus/upload 
