@@ -34,7 +34,7 @@ from filters import ContributorNamesFilter, MentionsFilter
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['sphinxcontrib.spelling']
+extensions = ['sphinx_wagtail_theme', 'sphinxcontrib.spelling']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -92,13 +92,30 @@ spelling_filters = [ContributorNamesFilter, MentionsFilter]
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'default'
+html_theme = 'sphinx_wagtail_theme'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
-# documentation.
+# documentation: https://sphinx-wagtail-theme.readthedocs.io/
 #
-# html_theme_options = {}
+html_theme_options = dict(
+    project_name='wagtailmenus',
+    github_url='https://github.com/wagtail-nest/wagtailmenus/blob/main/docs/source/',
+    header_links=', '.join([
+        'GitHub|https://github.com/wagtail-nest/wagtailmenus',
+        'PyPI|https://pypi.org/project/wagtailmenus/',
+    ]),
+    footer_links=', '.join([
+        'Wagtail|https://wagtail.org/',
+        'Wagtail Nest|https://github.com/wagtail-nest',
+    ]),
+)
+
+html_sidebars = {
+    '**': ['searchbox.html', 'globaltoc.html'],
+}
+
+html_last_updated_fmt = '%b %d, %Y'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,

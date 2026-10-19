@@ -30,9 +30,9 @@ development_extras = [
 
 documentation_extras = [
     'pyenchant>=2.0',
-    'Sphinx>=1.7.4',
-    'sphinxcontrib-spelling>=1.4',
-    'sphinx_rtd_theme>=0.3',
+    'Sphinx>=7.0',
+    'sphinxcontrib-spelling>=2.3.0',
+    'sphinx-wagtail-theme>=6.6',
 ]
 
 deployment_extras = []
