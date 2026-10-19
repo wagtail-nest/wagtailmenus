@@ -48,7 +48,7 @@ setup(
     packages=find_packages(),
     license="MIT",
     keywords="wagtail cms model utility",
-    url="https://github.com/jazzband/wagtailmenus",
+    url="https://github.com/wagtail-nest/wagtailmenus",
     include_package_data=True,
     zip_safe=False,
     classifiers=[
