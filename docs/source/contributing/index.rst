@@ -6,6 +6,8 @@ Hey! First of all, thanks for considering to help out!
 
 We welcome all support, whether on bug reports, code, reviews, tests, documentation, translations or just feature requests.
 
+wagtailmenus is part of `Wagtail Nest <https://github.com/wagtail-nest>`_. All contributors are expected to follow our `Code of Conduct <https://github.com/wagtail-nest/wagtailmenus/blob/main/CODE_OF_CONDUCT.md>`_, which follows the `Wagtail Code of Conduct <https://github.com/wagtail/wagtail/blob/main/CODE_OF_CONDUCT.md>`_.
+
 .. contents::
     :local:
     :depth: 2
@@ -14,7 +16,7 @@ We welcome all support, whether on bug reports, code, reviews, tests, documentat
 Using the issue tracker
 =======================
 
-The `issue tracker <https://github.com/jazzband/wagtailmenus/issues>`_ is the preferred channel for bug reports, features requests and submitting pull requests. Please don't use the issue tracker for support requests. If you need help with something that isn't a bug, you can join our `Wagtailmenus support group <https://groups.google.com/forum/#!forum/wagtailmenus-support-requests>`_ and ask your question there.
+The `issue tracker <https://github.com/wagtail-nest/wagtailmenus/issues>`_ is the preferred channel for bug reports, features requests and submitting pull requests. Please don't use the issue tracker for support requests. If you need help with something that isn't a bug, you can join our `Wagtailmenus support group <https://groups.google.com/forum/#!forum/wagtailmenus-support-requests>`_ and ask your question there.
 
 
 Submitting translations
