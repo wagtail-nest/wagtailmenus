@@ -1,14 +1,17 @@
 name: Nightly Wagtail Test
 
 on:
-  # Schedule turned off until webhook is provided and request package installed on report_nightly script
-  # schedule:
-    # - cron: '0 1 * * *'
+  schedule:
+    - cron: '0 1 * * *'
     # At 01:00, daily
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   nightly-test:
+    if: ${{ github.repository == 'wagtail-nest/wagtailmenus' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -27,5 +30,7 @@ jobs:
         if: steps.test.outcome == 'failure'
         run: |
           python .github/scripts/report_nightly_build_failure.py
+          echo "::error::'tox -e future' failed against Wagtail main"
+          exit 1
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
