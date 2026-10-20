@@ -6,7 +6,6 @@ from wagtailmenus.tests.test_mainmenu_class import MainMenuTestCase
 
 
 class TestCreateDictFromParentContext(MainMenuTestCase):
-
     # ------------------------------------------------------------------------
     # Menu.create_dict_from_parent_context()
     # ------------------------------------------------------------------------
@@ -27,7 +26,7 @@ class TestCreateDictFromParentContext(MainMenuTestCase):
         self.assertEqual(result, template_context.flatten())
 
     def test_copies_value_if_parent_context_is_dict(self):
-        dict_context = {'blah': 'blah'}
+        dict_context = {"blah": "blah"}
         menu = self.get_render_ready_menu_instance(parent_context=dict_context)
 
         result = menu.create_dict_from_parent_context()
@@ -35,7 +34,7 @@ class TestCreateDictFromParentContext(MainMenuTestCase):
         self.assertEqual(result, dict_context)
 
     def test_returns_empty_dict_if_partent_context_is_some_other_value_type(self):
-        simple_context = Context({'blah': 'blah'})
+        simple_context = Context({"blah": "blah"})
         menu = self.get_render_ready_menu_instance(parent_context=simple_context)
 
         result = menu.create_dict_from_parent_context()
@@ -44,7 +43,6 @@ class TestCreateDictFromParentContext(MainMenuTestCase):
 
 
 class TestGetMenuItemsForRendering(MainMenuTestCase):
-
     # ------------------------------------------------------------------------
     # Menu.get_menu_items_for_rendering()
     # ------------------------------------------------------------------------
@@ -59,18 +57,20 @@ class TestGetMenuItemsForRendering(MainMenuTestCase):
     def test_sub_menu_items_not_added_inline_by_default(self):
         menu = self.get_render_ready_menu_instance()
         items_with_children = tuple(
-            item for item in menu.get_menu_items_for_rendering()
-            if getattr(item, 'has_children_in_menu', False)
+            item
+            for item in menu.get_menu_items_for_rendering()
+            if getattr(item, "has_children_in_menu", False)
         )
         self.assertGreater(len(items_with_children), 1)
         for menu_item in items_with_children:
-            self.assertIs(getattr(menu_item, 'sub_menu', None), None)
+            self.assertIs(getattr(menu_item, "sub_menu", None), None)
 
     def test_sub_menu_items_added_inline_if_option_value_set_to_true(self):
         menu = self.get_render_ready_menu_instance(add_sub_menus_inline=True)
         items_with_children = tuple(
-            item for item in menu.get_menu_items_for_rendering()
-            if getattr(item, 'has_children_in_menu', False)
+            item
+            for item in menu.get_menu_items_for_rendering()
+            if getattr(item, "has_children_in_menu", False)
         )
         for menu_item in items_with_children:
             self.assertTrue(menu_item.sub_menu)

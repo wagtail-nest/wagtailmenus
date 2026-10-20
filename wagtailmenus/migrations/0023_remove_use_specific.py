@@ -4,18 +4,17 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('wagtailmenus', '0022_auto_20170913_2125'),
+        ("wagtailmenus", "0022_auto_20170913_2125"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='flatmenu',
-            name='use_specific',
+            model_name="flatmenu",
+            name="use_specific",
         ),
         migrations.RemoveField(
-            model_name='mainmenu',
-            name='use_specific',
+            model_name="mainmenu",
+            name="use_specific",
         ),
     ]

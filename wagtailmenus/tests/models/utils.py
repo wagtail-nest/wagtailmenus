@@ -9,7 +9,7 @@ class TranslatedField:
 
     def __get__(self, instance, owner):
         english = getattr(instance, self.en_field)
-        trans_field_name = '%s_field' % translation.get_language()
+        trans_field_name = "%s_field" % translation.get_language()
         trans_field = getattr(self, trans_field_name, None)
         if trans_field:
             return getattr(instance, trans_field) or english
