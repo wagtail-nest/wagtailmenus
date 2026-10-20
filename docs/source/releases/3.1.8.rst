@@ -19,6 +19,6 @@ Minor changes & bug fixes
 * Fix bug that prevented the `show_menu_heading` from working on default flat menus.
 * Fix `autopopulate_main_menus` instructions.
 * Fix docs examples for registering hooks.
-* Fix `#435 <https://github.com/jazzband/wagtailmenus/issues/435>`_ and \
-  `#452 <https://github.com/jazzband/wagtailmenus/issues/452>`_, which were causing \
+* Fix `#435 <https://github.com/wagtail-nest/wagtailmenus/issues/435>`_ and \
+  `#452 <https://github.com/wagtail-nest/wagtailmenus/issues/452>`_, which were causing \
   extra migrations on the id fields. 

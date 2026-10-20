@@ -18,5 +18,5 @@ Minor changes & bug fixes
 
 * Added support for Wagtail >3.0.
 * Updated Travis/tox test settings to test against Wagtail 3.0.
-* Fixed bug `#421 <https://github.com/jazzband/wagtailmenus/issues/421>`_, which prevented creating or editing menus in wagtail 3.0.
+* Fixed bug `#421 <https://github.com/wagtail-nest/wagtailmenus/issues/421>`_, which prevented creating or editing menus in wagtail 3.0.
 

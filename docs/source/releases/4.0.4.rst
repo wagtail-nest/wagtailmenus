@@ -15,4 +15,4 @@ There are no new major features in this release.
 Minor changes & bug fixes
 =========================
 
-* Fix PyPI Project links are broken, Read the Docs not updated [#488](https://github.com/jazzband/wagtailmenus/issues/488)
+* Fix PyPI Project links are broken, Read the Docs not updated [#488](https://github.com/wagtail-nest/wagtailmenus/issues/488)

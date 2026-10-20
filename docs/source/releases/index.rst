@@ -67,4 +67,4 @@ Release notes
 
 
 Release notes for versions preceding ``v2.0.0`` can be found on GitHub:
-https://github.com/jazzband/wagtailmenus/releases?after=v2.0.0
+https://github.com/wagtail-nest/wagtailmenus/releases?after=v2.0.0
