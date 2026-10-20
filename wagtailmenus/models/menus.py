@@ -6,6 +6,7 @@ from django.db import models
 from django.db.models import BooleanField, Case, Q, When
 from django.template.loader import get_template, select_template
 from django.utils.functional import cached_property
+from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 from modelcluster.models import ClusterableModel
@@ -1151,7 +1152,8 @@ class AbstractMainMenu(DefinesSubMenuTemplatesMixin, MenuWithMenuItems):
         verbose_name=_("maximum levels"),
         choices=constants.MAX_LEVELS_CHOICES,
         default=2,
-        help_text=mark_safe(
+        # Static, translated string; no user input. Can be marked safe.
+        help_text=mark_safe(  # nosec B308 B703
             _(
                 "The maximum number of levels to display when rendering this "
                 "menu. The value can be overidden by supplying a different "
@@ -1254,7 +1256,8 @@ class AbstractFlatMenu(DefinesSubMenuTemplatesMixin, MenuWithMenuItems):
         verbose_name=_("maximum levels"),
         choices=constants.MAX_LEVELS_CHOICES,
         default=1,
-        help_text=mark_safe(
+        # Static, translated string; no user input. Can be marked safe.
+        help_text=mark_safe(  # nosec B308 B703
             _(
                 "The maximum number of levels to display when rendering this "
                 "menu. The value can be overidden by supplying a different "
@@ -1271,7 +1274,7 @@ class AbstractFlatMenu(DefinesSubMenuTemplatesMixin, MenuWithMenuItems):
         verbose_name_plural = _("flat menus")
 
     def handle_formatted(self):
-        return mark_safe(f"<code>{self.handle}</code>")
+        return format_html("<code>{}</code>", self.handle)
 
     handle_formatted.short_description = _("handle")
     handle_formatted.admin_order_field = "handle"
