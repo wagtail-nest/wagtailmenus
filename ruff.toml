@@ -1,0 +1,8 @@
+target-version = "py310"
+line-length = 88
+extend-exclude = ["docs/build"]
+
+[lint]
+extend-select = ["I", "UP"]
+# %-style string formatting; revisit separately
+ignore = ["UP031"]

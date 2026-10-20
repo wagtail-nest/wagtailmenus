@@ -2,45 +2,45 @@
 {% load menu_tags %}
 
 {% block content %}
-	<div class="row">
+    <div class="row">
 
-		<div class="content-main">
-			<h1>{{ self.title }}</h1>
-			<p>Hello world.</p>
+        <div class="content-main">
+            <h1>{{ self.title }}</h1>
+            <p>Hello world.</p>
 
-			<h4>Children Menu (max_levels=1)</h4>
-			<div id="children-menu-one-level">
-				{% children_menu %}
-			</div>
+            <h4>Children Menu (max_levels=1)</h4>
+            <div id="children-menu-one-level">
+                {% children_menu %}
+            </div>
 
-			<h4>Children Menu (max_levels=3)</h4>
-			<div id="children-menu-three-levels">
-				{% children_menu max_levels=3 allow_repeating_parents=False %}
-			</div>
+            <h4>Children Menu (max_levels=3)</h4>
+            <div id="children-menu-three-levels">
+                {% children_menu max_levels=3 allow_repeating_parents=False %}
+            </div>
 
             <h4>Children Menu (use_absolute_page_urls=True)</h4>
-			<div id="children-menu-absolute-urls">
-				{% children_menu use_absolute_page_urls=True %}
-			</div>
-		</div>
+            <div id="children-menu-absolute-urls">
+                {% children_menu use_absolute_page_urls=True %}
+            </div>
+        </div>
 
-		<div class="content-secondary">
-			<h4>Section Menu (show_multiple_levels=False)</h4>
-			<div id="section-menu-one-level">
-				{% section_menu show_multiple_levels=False %}
-			</div>
+        <div class="content-secondary">
+            <h4>Section Menu (show_multiple_levels=False)</h4>
+            <div id="section-menu-one-level">
+                {% section_menu show_multiple_levels=False %}
+            </div>
 
-			<h4>Section Menu (max_levels=2)</h4>
-			<div id="section-menu-two-levels">
-				{% section_menu max_levels=2 %}
-			</div>
+            <h4>Section Menu (max_levels=2)</h4>
+            <div id="section-menu-two-levels">
+                {% section_menu max_levels=2 %}
+            </div>
 
             <h4>Section Menu (use_absolute_page_urls=True)</h4>
-			<div id="section-menu-absolute-url">
-				{% section_menu use_absolute_page_urls=True %}
-			</div>
+            <div id="section-menu-absolute-url">
+                {% section_menu use_absolute_page_urls=True %}
+            </div>
 
-		</div>
+        </div>
 
-	</div>    
+    </div>
 {% endblock %}

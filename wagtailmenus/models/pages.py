@@ -22,22 +22,30 @@ class MenuPageMixin(models.Model):
         ),
     )
     repeated_item_text = models.CharField(
-        verbose_name=_('repeated item link text'),
+        verbose_name=_("repeated item link text"),
         max_length=255,
         blank=True,
         help_text=_(
             "e.g. 'Section home' or 'Overview'. If left blank, the page title "
             "will be used."
-        )
+        ),
     )
 
     class Meta:
         abstract = True
 
     def modify_submenu_items(
-        self, menu_items, current_page, current_ancestor_ids, current_site,
-        allow_repeating_parents, apply_active_classes, original_menu_tag,
-        menu_instance=None, request=None, use_absolute_page_urls=False,
+        self,
+        menu_items,
+        current_page,
+        current_ancestor_ids,
+        current_site,
+        allow_repeating_parents,
+        apply_active_classes,
+        original_menu_tag,
+        menu_instance=None,
+        request=None,
+        use_absolute_page_urls=False,
     ):
         """
         Make any necessary modifications to `menu_items` and return the list
@@ -47,7 +55,7 @@ class MenuPageMixin(models.Model):
         `original_menu_tag` should be one of 'main_menu', 'section_menu' or
         'children_menu', which should be useful when extending/overriding.
         """
-        if (allow_repeating_parents and menu_items and self.repeat_in_subnav):
+        if allow_repeating_parents and menu_items and self.repeat_in_subnav:
             """
             This page should have a version of itself repeated alongside
             children in the subnav, so we create a new item and prepend it to
@@ -64,8 +72,14 @@ class MenuPageMixin(models.Model):
             menu_items.insert(0, repeated_item)
         return menu_items
 
-    def has_submenu_items(self, current_page, allow_repeating_parents,
-                          original_menu_tag, menu_instance=None, request=None):
+    def has_submenu_items(
+        self,
+        current_page,
+        allow_repeating_parents,
+        original_menu_tag,
+        menu_instance=None,
+        request=None,
+    ):
         """
         When rendering pages in a menu template a `has_children_in_menu`
         attribute is added to each page, letting template developers know
@@ -80,7 +94,7 @@ class MenuPageMixin(models.Model):
         return menu_instance.page_has_children(self)
 
     def get_text_for_repeated_menu_item(
-        self, request=None, current_site=None, original_menu_tag='', **kwargs
+        self, request=None, current_site=None, original_menu_tag="", **kwargs
     ):
         """Return the a string to use as 'text' for this page when it is being
         included as a 'repeated' menu item in a menu. You might want to
@@ -88,13 +102,16 @@ class MenuPageMixin(models.Model):
         have different translations of 'repeated_item_text' that you wish to
         surface."""
         source_field_name = settings.PAGE_FIELD_FOR_MENU_ITEM_TEXT
-        return self.repeated_item_text or getattr(
-            self, source_field_name, self.title
-        )
+        return self.repeated_item_text or getattr(self, source_field_name, self.title)
 
     def get_repeated_menu_item(
-        self, current_page, current_site, apply_active_classes,
-        original_menu_tag, request=None, use_absolute_page_urls=False,
+        self,
+        current_page,
+        current_site,
+        apply_active_classes,
+        original_menu_tag,
+        request=None,
+        use_absolute_page_urls=False,
     ):
         """Return something that can be used to display a 'repeated' menu item
         for this specific page."""
@@ -117,7 +134,7 @@ class MenuPageMixin(models.Model):
         if apply_active_classes and self == current_page:
             menuitem.active_class = settings.ACTIVE_CLASS
         else:
-            menuitem.active_class = ''
+            menuitem.active_class = ""
 
         # Set/reset 'has_children_in_menu' and 'sub_menu'
         menuitem.has_children_in_menu = False
@@ -127,7 +144,6 @@ class MenuPageMixin(models.Model):
 
 
 class MenuPage(Page, MenuPageMixin):
-
     settings_panels = menupage_settings_panels
 
     class Meta:
@@ -136,15 +152,15 @@ class MenuPage(Page, MenuPageMixin):
 
 class AbstractLinkPage(Page):
     link_page = models.ForeignKey(
-        'wagtailcore.Page',
-        verbose_name=_('link to an internal page'),
+        "wagtailcore.Page",
+        verbose_name=_("link to an internal page"),
         blank=True,
         null=True,
-        related_name='+',
+        related_name="+",
         on_delete=models.SET_NULL,
     )
     link_url = models.CharField(
-        verbose_name=_('link to a custom URL'),
+        verbose_name=_("link to a custom URL"),
         max_length=255,
         blank=True,
         null=True,
@@ -153,18 +169,16 @@ class AbstractLinkPage(Page):
         verbose_name=_("append to URL"),
         max_length=255,
         blank=True,
-        help_text=_(
-            "Use this to optionally append a #hash or querystring to the URL."
-        )
+        help_text=_("Use this to optionally append a #hash or querystring to the URL."),
     )
     extra_classes = models.CharField(
-        verbose_name=_('menu item css classes'),
+        verbose_name=_("menu item css classes"),
         max_length=100,
         blank=True,
         help_text=_(
             "Optionally specify css classes to be added to this page when it "
             "appears in menus."
-        )
+        ),
     )
 
     subpage_types = []  # Don't allow subpages
@@ -185,38 +199,34 @@ class AbstractLinkPage(Page):
         """Return a string to use as link text when this page appears in
         menus."""
         source_field_name = settings.PAGE_FIELD_FOR_MENU_ITEM_TEXT
-        if(
-            source_field_name != 'menu_text' and
-            hasattr(self, source_field_name)
-        ):
+        if source_field_name != "menu_text" and hasattr(self, source_field_name):
             return getattr(self, source_field_name)
         return self.title
 
     def clean(self, *args, **kwargs):
-        if self.link_page and isinstance(
-            self.link_page.specific, AbstractLinkPage
-        ):
-            raise ValidationError({
-                'link_page': ValidationError(
-                    _("A link page cannot link to another link page"),
-                    code='invalid'
-                ),
-            })
+        if self.link_page and isinstance(self.link_page.specific, AbstractLinkPage):
+            raise ValidationError(
+                {
+                    "link_page": ValidationError(
+                        _("A link page cannot link to another link page"),
+                        code="invalid",
+                    ),
+                }
+            )
         if not self.link_url and not self.link_page:
             raise ValidationError(
                 _("Please choose an internal page or provide a custom URL"),
-                code='invalid'
+                code="invalid",
             )
         if self.link_url and self.link_page:
             raise ValidationError(
                 _("Linking to both a page and custom URL is not permitted"),
-                code='invalid'
+                code="invalid",
             )
         super().clean(*args, **kwargs)
 
     def link_page_is_suitable_for_display(
-        self, request=None, current_site=None, menu_instance=None,
-        original_menu_tag=''
+        self, request=None, current_site=None, menu_instance=None, original_menu_tag=""
     ):
         """
         Like menu items, link pages linking to pages should only be included
@@ -224,16 +234,17 @@ class AbstractLinkPage(Page):
         appear in menus. Returns a boolean indicating as much
         """
         if self.link_page:
-            if(
-                not self.link_page.show_in_menus or
-                not self.link_page.live or
-                self.link_page.expired
+            if (
+                not self.link_page.show_in_menus
+                or not self.link_page.live
+                or self.link_page.expired
             ):
                 return False
         return True
 
-    def show_in_menus_custom(self, request=None, current_site=None,
-                             menu_instance=None, original_menu_tag=''):
+    def show_in_menus_custom(
+        self, request=None, current_site=None, menu_instance=None, original_menu_tag=""
+    ):
         """
         Return a boolean indicating whether this page should be included in
         menus being rendered.
@@ -253,7 +264,7 @@ class AbstractLinkPage(Page):
             return self.link_url
 
         if not self.link_page:
-            return ''
+            return ""
 
         p = self.link_page.specific  # for tidier referencing below
         if full_url:
@@ -266,7 +277,7 @@ class AbstractLinkPage(Page):
             return base + self.url_append
         except TypeError:
             pass  # self.link_page is not routable
-        return ''
+        return ""
 
     url = property(get_url)
 
@@ -276,7 +287,7 @@ class AbstractLinkPage(Page):
             return base + self.url_append
         except TypeError:
             pass  # self.link_page is not routable
-        return ''
+        return ""
 
     full_url = property(get_full_url)
 
@@ -285,20 +296,19 @@ class AbstractLinkPage(Page):
 
     def serve(self, request, *args, **kwargs):
         # Display appropriate message if previewing
-        if getattr(request, 'is_preview', False):
-            return HttpResponse(_("This page redirects to: %(url)s") % {
-                'url': self.get_full_url(request)
-            })
+        if getattr(request, "is_preview", False):
+            return HttpResponse(
+                _("This page redirects to: %(url)s")
+                % {"url": self.get_full_url(request)}
+            )
         # Redirect to target URL if served
-        site = getattr(request, 'site', None)
-        return redirect(
-            self.relative_url(current_site=site, request=request)
-        )
+        site = getattr(request, "site", None)
+        return redirect(self.relative_url(current_site=site, request=request))
 
     def serve_preview(self, request, mode):
-        return HttpResponse(_("This page redirects to: %(url)s") % {
-            'url': self.get_full_url(request)
-        })
+        return HttpResponse(
+            _("This page redirects to: %(url)s") % {"url": self.get_full_url(request)}
+        )
 
     def _get_dummy_header_url(self, original_request=None):
         """

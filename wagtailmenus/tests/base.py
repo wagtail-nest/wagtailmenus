@@ -20,7 +20,7 @@ class GetSubMenuTemplateNamesMethodTestCase(TestCase):
         Page = utils.get_page_model()
         return Site.objects.all().first() or Site.objects.create(
             id=1,
-            hostname='wagtailmenus.co.uk',
+            hostname="wagtailmenus.co.uk",
             root_page=Page.objects.first(),
         )
 
@@ -28,35 +28,33 @@ class GetSubMenuTemplateNamesMethodTestCase(TestCase):
         menu = self.get_test_menu_instance()
         site = self.get_test_site_instance()
 
-        menu._contextual_vals = utils.make_contextualvals_instance(
-            current_site=site
-        )
+        menu._contextual_vals = utils.make_contextualvals_instance(current_site=site)
         result = menu.get_sub_menu_template_names()
         self.assertEqual(len(result), self.expected_default_result_length)
         for val in result:
             self.assertFalse(site.hostname in val)
 
     @override_settings(WAGTAILMENUS_SITE_SPECIFIC_TEMPLATE_DIRS=True)
-    def test_specific_templates_returned_if_setting_is_true_and_current_site_is_in_contextual_vals(self):
+    def test_specific_templates_returned_if_setting_is_true_and_current_site_is_in_contextual_vals(
+        self,
+    ):
         menu = self.get_test_menu_instance()
         site = self.get_test_site_instance()
 
-        menu._contextual_vals = utils.make_contextualvals_instance(
-            current_site=site
-        )
+        menu._contextual_vals = utils.make_contextualvals_instance(current_site=site)
         result = menu.get_sub_menu_template_names()
         self.assertGreater(len(result), self.expected_default_result_length)
         for val in result[:2]:
             self.assertTrue(site.hostname in val)
 
     @override_settings(WAGTAILMENUS_SITE_SPECIFIC_TEMPLATE_DIRS=True)
-    def test_specific_templates_not_returned_if_current_site_not_in_contextual_vals(self):
+    def test_specific_templates_not_returned_if_current_site_not_in_contextual_vals(
+        self,
+    ):
         menu = self.get_test_menu_instance()
         site = self.get_test_site_instance()
 
-        menu._contextual_vals = utils.make_contextualvals_instance(
-            current_site=None
-        )
+        menu._contextual_vals = utils.make_contextualvals_instance(current_site=None)
         result = menu.get_sub_menu_template_names()
         self.assertEqual(len(result), self.expected_default_result_length)
         for val in result:
@@ -64,7 +62,6 @@ class GetSubMenuTemplateNamesMethodTestCase(TestCase):
 
 
 class GetTemplateNamesMethodTestCase(TestCase):
-
     expected_default_result_length = 3
 
     def get_test_menu_instance(self):
@@ -76,7 +73,7 @@ class GetTemplateNamesMethodTestCase(TestCase):
         Page = utils.get_page_model()
         return Site.objects.all().first() or Site.objects.create(
             id=1,
-            hostname='wagtailmenus.co.uk',
+            hostname="wagtailmenus.co.uk",
             root_page=Page.objects.first(),
         )
 
@@ -85,7 +82,7 @@ class GetTemplateNamesMethodTestCase(TestCase):
         site = self.get_test_site_instance()
 
         menu._contextual_vals = utils.make_contextualvals_instance(
-            url='/', current_site=site
+            url="/", current_site=site
         )
         result = menu.get_template_names()
         self.assertEqual(len(result), self.expected_default_result_length)
@@ -93,12 +90,14 @@ class GetTemplateNamesMethodTestCase(TestCase):
             self.assertFalse(site.hostname in val)
 
     @override_settings(WAGTAILMENUS_SITE_SPECIFIC_TEMPLATE_DIRS=True)
-    def test_site_specific_templates_returned_if_setting_is_true_and_current_site_is_in_contextual_vals(self):
+    def test_site_specific_templates_returned_if_setting_is_true_and_current_site_is_in_contextual_vals(
+        self,
+    ):
         menu = self.get_test_menu_instance()
         site = self.get_test_site_instance()
 
         menu._contextual_vals = utils.make_contextualvals_instance(
-            url='/', current_site=site
+            url="/", current_site=site
         )
         result = menu.get_template_names()
         self.assertGreater(len(result), self.expected_default_result_length)
@@ -106,12 +105,14 @@ class GetTemplateNamesMethodTestCase(TestCase):
             self.assertTrue(site.hostname in val)
 
     @override_settings(WAGTAILMENUS_SITE_SPECIFIC_TEMPLATE_DIRS=True)
-    def test_specific_templates_not_returned_if_current_site_not_in_contextual_vals(self):
+    def test_specific_templates_not_returned_if_current_site_not_in_contextual_vals(
+        self,
+    ):
         menu = self.get_test_menu_instance()
         site = self.get_test_site_instance()
 
         menu._contextual_vals = utils.make_contextualvals_instance(
-            url='/', current_site=None
+            url="/", current_site=None
         )
         result = menu.get_template_names()
         self.assertEqual(len(result), self.expected_default_result_length)
