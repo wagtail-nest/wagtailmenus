@@ -22,7 +22,7 @@ jobs:
           python-version: ${{ matrix.python }}
           cache: pip
           cache-dependency-path: |
-            setup.py
+            pyproject.toml
             tox.ini
 
       - name: Install dependencies

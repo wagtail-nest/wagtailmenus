@@ -60,8 +60,9 @@ If you'd like a runnable Django project to help with development of wagtailmenus
     .. code-block:: console
 
         python3 -m venv .venv
-        pip install -e '.[development]' -U
         source .venv/bin/activate
+        pip install -U pip
+        pip install -U -e . --group development
 
 2.  Create a copy of the development settings:
 
@@ -111,11 +112,11 @@ Your local copies of ``settings/development.py`` and ``manage.py`` will be ignor
 Linting and formatting
 ======================
 
-Python code is linted and formatted with `ruff <https://docs.astral.sh/ruff/>`_, and Django templates are indented with `djhtml <https://github.com/rtts/djhtml>`_. Both run through `pre-commit <https://pre-commit.com/>`_, which is included in the ``development`` extras. Install the git hook once, and your changes will be checked on every commit:
+Python code is linted and formatted with `ruff <https://docs.astral.sh/ruff/>`_, and Django templates are indented with `djhtml <https://github.com/rtts/djhtml>`_. Both run through `pre-commit <https://pre-commit.com/>`_, which is included in the ``development`` dependency group (installing dependency groups requires pip 25.1 or later). Install the git hook once, and your changes will be checked on every commit:
 
 .. code-block:: console
 
-    pip install -e '.[development]'
+    pip install -e . --group development
     pre-commit install
 
 To check (and fix) every file in the repository, run:
@@ -139,7 +140,7 @@ It's important that any new code is tested before submitting. To quickly test co
 .. code-block:: console
 
     source .venv/bin/activate
-    pip install -e '.[testing]' -U
+    pip install -U -e . --group testing
 
 Then, run the following command to execute tests:
 
@@ -171,7 +172,7 @@ Building the documentation
     .. code-block:: console
 
         source .venv/bin/activate
-        pip install -e '.[docs]' -U
+        pip install -U -e . --group docs
 
 2. ``cd`` into the ``docs`` directory to do documentation-related stuff:
 

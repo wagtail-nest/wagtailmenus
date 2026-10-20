@@ -1,10 +1,6 @@
-from wagtailmenus.utils.version import get_stable_branch_name, get_version
+from importlib.metadata import version
 
-# major.minor.patch.release.number
-# release must be one of alpha, beta, rc, or final
-VERSION = (4, 1, 1, "final", 0)
-__version__ = get_version(VERSION)
-stable_branch_name = get_stable_branch_name(VERSION)
+__version__ = version("wagtailmenus")
 
 default_app_config = "wagtailmenus.apps.WagtailMenusConfig"
 

@@ -1,0 +1,79 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wagtailmenus"
+version = "4.1.1"
+description = "An app to help you manage menus in your Wagtail projects more consistently."
+readme = "README.rst"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE.txt"]
+authors = [{ name = "Andy Babic", email = "ababic@rkh.co.uk" }]
+keywords = ["wagtail", "cms", "model", "utility"]
+classifiers = [
+    "Environment :: Web Environment",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Framework :: Django",
+    "Framework :: Django :: 4.2",
+    "Framework :: Django :: 5.2",
+    "Framework :: Django :: 6.0",
+    "Framework :: Django :: 6.1",
+    "Framework :: Wagtail :: 7",
+    "Framework :: Wagtail :: 8",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+]
+dependencies = [
+    "wagtail>=7.0",
+    "django-cogwheels>=0.3",
+]
+
+[project.urls]
+Source = "https://github.com/wagtail-nest/wagtailmenus"
+Documentation = "https://wagtailmenus.readthedocs.io/"
+Changelog = "https://github.com/wagtail-nest/wagtailmenus/blob/main/CHANGELOG.md"
+Issues = "https://github.com/wagtail-nest/wagtailmenus/issues"
+
+[dependency-groups]
+testing = [
+    "beautifulsoup4>=4.8",
+    "coverage>=4.5",
+    "django-webtest>=1.9",
+]
+docs = [
+    "pyenchant>=3.3.0",
+    "Sphinx>=7.0",
+    "sphinxcontrib-spelling>=8.0.2",
+    "sphinx-wagtail-theme>=6.6",
+]
+development = [
+    { include-group = "testing" },
+    "django-debug-toolbar",
+    "django-extensions",
+    "ipdb",
+    "pre-commit",
+    "werkzeug",
+]
+
+[tool.setuptools.packages.find]
+include = ["wagtailmenus*"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 88
+extend-exclude = ["docs/build"]
+
+[tool.ruff.lint]
+extend-select = ["I", "UP"]
+# %-style string formatting; revisit separately
+ignore = ["UP031"]
