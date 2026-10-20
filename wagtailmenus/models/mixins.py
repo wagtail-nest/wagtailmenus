@@ -48,15 +48,17 @@ class DefinesSubMenuTemplatesMixin:
             or None if no template has been 'specified'
         """
         ideal_index = level - 2
-        return self._option_vals.sub_menu_template_name or \
-            get_item_by_index_or_last_item(
-                self._option_vals.sub_menu_template_names, ideal_index) or \
-            self.sub_menu_template_name or \
-            get_item_by_index_or_last_item(
-                self.sub_menu_template_names, ideal_index)
+        return (
+            self._option_vals.sub_menu_template_name
+            or get_item_by_index_or_last_item(
+                self._option_vals.sub_menu_template_names, ideal_index
+            )
+            or self.sub_menu_template_name
+            or get_item_by_index_or_last_item(self.sub_menu_template_names, ideal_index)
+        )
 
     def get_sub_menu_template(self, level=2):
-        if not hasattr(self, '_sub_menu_template_cache'):
+        if not hasattr(self, "_sub_menu_template_cache"):
             # Initialise cache for this menu instance
             self._sub_menu_template_cache = {}
         elif level in self._sub_menu_template_cache:
@@ -69,9 +71,7 @@ class DefinesSubMenuTemplatesMixin:
             template = get_template(template_name)
         else:
             # A template wasn't specified, so search the filesystem
-            template = select_template(
-                self.get_sub_menu_template_names(level)
-            )
+            template = select_template(self.get_sub_menu_template_names(level))
 
         # Cache the template instance before returning
         self._sub_menu_template_cache[level] = template
@@ -90,18 +90,22 @@ class DefinesSubMenuTemplatesMixin:
 
         if settings.SITE_SPECIFIC_TEMPLATE_DIRS and site:
             hostname = site.hostname
-            template_names.extend([
-                "menus/%s/%s/level_%s.html" % (hostname, menu_name, level),
-                "menus/%s/%s/sub_menu.html" % (hostname, menu_name),
-                "menus/%s/%s_sub_menu.html" % (hostname, menu_name),
-                "menus/%s/sub_menu.html" % hostname,
-            ])
-        template_names.extend([
-            "menus/%s/level_%s.html" % (menu_name, level),
-            "menus/%s/sub_menu.html" % menu_name,
-            "menus/%s_sub_menu.html" % menu_name,
-            settings.DEFAULT_SUB_MENU_TEMPLATE,
-        ])
+            template_names.extend(
+                [
+                    "menus/%s/%s/level_%s.html" % (hostname, menu_name, level),
+                    "menus/%s/%s/sub_menu.html" % (hostname, menu_name),
+                    "menus/%s/%s_sub_menu.html" % (hostname, menu_name),
+                    "menus/%s/sub_menu.html" % hostname,
+                ]
+            )
+        template_names.extend(
+            [
+                "menus/%s/level_%s.html" % (menu_name, level),
+                "menus/%s/sub_menu.html" % menu_name,
+                "menus/%s_sub_menu.html" % menu_name,
+                settings.DEFAULT_SUB_MENU_TEMPLATE,
+            ]
+        )
         return template_names
 
     def get_context_data(self, **kwargs):
@@ -113,6 +117,6 @@ class DefinesSubMenuTemplatesMixin:
         """
         data = {}
         if self._contextual_vals.current_level == 1 and self.max_levels > 1:
-            data['sub_menu_template'] = self.sub_menu_template.template.name
+            data["sub_menu_template"] = self.sub_menu_template.template.name
         data.update(kwargs)
         return super().get_context_data(**data)

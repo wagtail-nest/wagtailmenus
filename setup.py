@@ -1,8 +1,10 @@
 import os
-from setuptools import setup, find_packages
+
+from setuptools import find_packages, setup
+
 from wagtailmenus import __version__
 
-with open(os.path.join(os.path.dirname(__file__), 'README.rst')) as readme:
+with open(os.path.join(os.path.dirname(__file__), "README.rst")) as readme:
     README = readme.read()
 
 # allow setup.py to be run from any path
@@ -10,29 +12,30 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 # Essential dependencies
 requires = [
-    'wagtail>=7.0',
-    'django-cogwheels==0.3',
+    "wagtail>=7.0",
+    "django-cogwheels==0.3",
 ]
 
 testing_extras = [
-    'beautifulsoup4>=4.8,<5.0',
-    'coverage>=4.5',
-    'django-webtest>=1.9,<1.10',
+    "beautifulsoup4>=4.8,<5.0",
+    "coverage>=4.5",
+    "django-webtest>=1.9,<1.10",
 ]
 
 development_extras = [
-    'wagtail>=7.0',
-    'django-debug-toolbar',
-    'django-extensions',
-    'ipdb',
-    'werkzeug',
+    "wagtail>=7.0",
+    "django-debug-toolbar",
+    "django-extensions",
+    "ipdb",
+    "pre-commit",
+    "werkzeug",
 ]
 
 documentation_extras = [
-    'pyenchant>=2.0',
-    'Sphinx>=7.0',
-    'sphinxcontrib-spelling>=2.3.0',
-    'sphinx-wagtail-theme>=6.6',
+    "pyenchant>=2.0",
+    "Sphinx>=7.0",
+    "sphinxcontrib-spelling>=2.3.0",
+    "sphinx-wagtail-theme>=6.6",
 ]
 
 deployment_extras = []
@@ -42,8 +45,9 @@ setup(
     version=__version__,
     author="Andy Babic",
     author_email="ababic@rkh.co.uk",
-    description=("An app to help you manage menus in your Wagtail projects "
-                 "more consistently."),
+    description=(
+        "An app to help you manage menus in your Wagtail projects more consistently."
+    ),
     long_description=README,
     packages=find_packages(),
     license="MIT",
@@ -55,29 +59,29 @@ setup(
         "Environment :: Web Environment",
         "Intended Audience :: Developers",
         "Operating System :: OS Independent",
-        'Programming Language :: Python',
-        'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.10',
-        'Programming Language :: Python :: 3.11',
-        'Programming Language :: Python :: 3.12',
-        'Programming Language :: Python :: 3.13',
-        'Programming Language :: Python :: 3.14',
-        'Framework :: Django',
-        'Framework :: Django :: 4.2',
-        'Framework :: Django :: 5.2',
-        'Framework :: Django :: 6.0',
-        'Framework :: Django :: 6.1',
-        'Framework :: Wagtail :: 7',
-        'Framework :: Wagtail :: 8',
-        'Topic :: Internet :: WWW/HTTP',
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
+        "Programming Language :: Python :: 3.13",
+        "Programming Language :: Python :: 3.14",
+        "Framework :: Django",
+        "Framework :: Django :: 4.2",
+        "Framework :: Django :: 5.2",
+        "Framework :: Django :: 6.0",
+        "Framework :: Django :: 6.1",
+        "Framework :: Wagtail :: 7",
+        "Framework :: Wagtail :: 8",
+        "Topic :: Internet :: WWW/HTTP",
         "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
     ],
     install_requires=requires,
-    python_requires='>=3.10',
+    python_requires=">=3.10",
     extras_require={
-        'testing': testing_extras,
-        'docs': documentation_extras,
-        'development': development_extras + testing_extras,
-        'deployment': deployment_extras,
+        "testing": testing_extras,
+        "docs": documentation_extras,
+        "development": development_extras + testing_extras,
+        "deployment": deployment_extras,
     },
 )

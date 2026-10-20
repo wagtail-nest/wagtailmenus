@@ -11,9 +11,11 @@ if settings.FLAT_MENUS_EDITABLE_IN_WAGTAILADMIN:
     register_snippet(settings.objects.FLAT_MENUS_ADMIN_CLASS)
 
 
-@hooks.register('before_serve_page')
+@hooks.register("before_serve_page")
 def wagtailmenu_params_helper(page, request, serve_args, serve_kwargs):
-    request.META.update({
-        'WAGTAILMENUS_CURRENT_PAGE': page,
-        'WAGTAILMENUS_CURRENT_SECTION_ROOT': derive_section_root(page),
-    })
+    request.META.update(
+        {
+            "WAGTAILMENUS_CURRENT_PAGE": page,
+            "WAGTAILMENUS_CURRENT_SECTION_ROOT": derive_section_root(page),
+        }
+    )

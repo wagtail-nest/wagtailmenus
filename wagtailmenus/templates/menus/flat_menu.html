@@ -2,13 +2,13 @@
 <div class="flat-menu {{ menu_handle }} {% if menu_heading %}with_heading{% else %}no_heading{% endif %}">
     {% if show_menu_heading and menu_heading %}<h4>{{ menu_heading|safe }}</h4>{% endif %}
     {% if menu_items %}
-    <ul>
-        {% for item in menu_items %}
-        <li class="{{ item.active_class }}">
-            <a href="{{ item.href }}">{{ item.text }}</a>
-            {% if item.has_children_in_menu %}{% sub_menu item %}{% endif %}
-        </li>
-        {% endfor %}
-    </ul>
+        <ul>
+            {% for item in menu_items %}
+                <li class="{{ item.active_class }}">
+                    <a href="{{ item.href }}">{{ item.text }}</a>
+                    {% if item.has_children_in_menu %}{% sub_menu item %}{% endif %}
+                </li>
+            {% endfor %}
+        </ul>
     {% endif %}
 </div>
