@@ -4,19 +4,21 @@ from django.test.client import RequestFactory
 from wagtailmenus.models.menus import ContextualVals, OptionVals
 
 SUB_MENU_TEMPLATE_LIST = (
-    'menus/sub_menu_level_2.html',
-    'menus/sub_menu_level_3.html',
+    "menus/sub_menu_level_2.html",
+    "menus/sub_menu_level_3.html",
 )
-SINGLE_ITEM_SUB_MENU_TEMPLATE_LIST = ('menus/sub_menu_level_2.html',)
+SINGLE_ITEM_SUB_MENU_TEMPLATE_LIST = ("menus/sub_menu_level_2.html",)
 
 
 def get_page_model():
     from wagtail.models import Page
+
     return Page
 
 
 def get_site_model():
     from wagtail.models import Site
+
     return Site
 
 
@@ -44,17 +46,17 @@ def make_optionvals_instance(
         template_name,
         sub_menu_template_name,
         sub_menu_template_names,
-        extra
+        extra,
     )
 
 
 def make_contextualvals_instance(
-    url='/',
+    url="/",
     request=None,
     parent_context=None,
     current_site=None,
     current_level=1,
-    original_menu_tag='',
+    original_menu_tag="",
     original_menu_instance=None,
     current_page=None,
     current_section_root_page=None,

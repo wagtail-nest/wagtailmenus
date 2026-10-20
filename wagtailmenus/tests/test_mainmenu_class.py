@@ -9,10 +9,10 @@ Page = utils.get_page_model()
 class MainMenuTestCase(TestCase):
     """A base TestCase class for testing MainMenu model class methods"""
 
-    fixtures = ['test.json']
+    fixtures = ["test.json"]
 
     def get_random_menu_instance_with_opt_vals_set(self):
-        obj = MainMenu.objects.order_by('?').first()
+        obj = MainMenu.objects.order_by("?").first()
         obj._option_vals = utils.make_optionvals_instance()
         return obj
 
@@ -21,7 +21,6 @@ class MainMenuTestCase(TestCase):
 
 
 class TestMainMenuGeneralMethods(MainMenuTestCase):
-
     def test_create_from_collected_values_is_not_implemented(self):
         # Model-based menus use get_from_collected_values() instead of
         # create_from_collected_values(), because existing objects are reused,
@@ -32,7 +31,6 @@ class TestMainMenuGeneralMethods(MainMenuTestCase):
 
 
 class TestTopLevelItems(MainMenuTestCase):
-
     # ------------------------------------------------------------------------
     # MainMenu.top_level_items
     # ------------------------------------------------------------------------
@@ -50,12 +48,10 @@ class TestTopLevelItems(MainMenuTestCase):
         # Replace any menu items that link to pages with links
         # to custom urls
         menu = self.get_test_menu_instance()
-        for i, item in enumerate(
-            menu.get_menu_items_manager().all()
-        ):
+        for i, item in enumerate(menu.get_menu_items_manager().all()):
             if item.link_page_id:
                 item.link_page = None
-                item.link_url = '/test/{}/'.format(i)
+                item.link_url = f"/test/{i}/"
                 item.save()
 
         # If no menu items link to pages, no further queries are needed
@@ -64,7 +60,6 @@ class TestTopLevelItems(MainMenuTestCase):
 
 
 class TestGetPagesForDisplay(MainMenuTestCase):
-
     # ------------------------------------------------------------------------
     # MainMenu.pages_for_display
     # ------------------------------------------------------------------------
@@ -104,7 +99,6 @@ class TestGetPagesForDisplay(MainMenuTestCase):
 
 
 class TestAddMenuItemsForPages(MainMenuTestCase):
-
     # ------------------------------------------------------------------------
     # MainMenu.add_menu_items_for_pages()
     # ------------------------------------------------------------------------
@@ -131,18 +125,17 @@ class TestAddMenuItemsForPages(MainMenuTestCase):
         # The last item should be a link to the 'D.C. Comics' page, and the
         # sort_order on the item should be 7
         dc_item = menu_items.pop()
-        self.assertEqual(dc_item.link_page.title, 'D.C. Comics')
+        self.assertEqual(dc_item.link_page.title, "D.C. Comics")
         self.assertEqual(dc_item.sort_order, 7)
 
         # The '2nd to last' item should be a link to the 'Marvel Comics' page,
         # and the sort_order on the item should be 6
         marvel_item = menu_items.pop()
-        self.assertEqual(marvel_item.link_page.title, 'Marvel Comics')
+        self.assertEqual(marvel_item.link_page.title, "Marvel Comics")
         self.assertEqual(marvel_item.sort_order, 6)
 
 
 class TestGetSpecifiedSubMenuTemplateName(MainMenuTestCase):
-
     # ------------------------------------------------------------------------
     # MainMenu._get_specified_sub_menu_template_name()
     # (inherited from mixins.DefinesSubMenuTemplatesMixin)
@@ -150,37 +143,29 @@ class TestGetSpecifiedSubMenuTemplateName(MainMenuTestCase):
 
     def test_returns_none_if_no_templates_specified(self):
         menu = self.get_random_menu_instance_with_opt_vals_set()
-        self.assertEqual(
-            menu._get_specified_sub_menu_template_name(level=2), None
-        )
-        self.assertEqual(
-            menu._get_specified_sub_menu_template_name(level=3), None
-        )
-        self.assertEqual(
-            menu._get_specified_sub_menu_template_name(level=4), None
-        )
+        self.assertEqual(menu._get_specified_sub_menu_template_name(level=2), None)
+        self.assertEqual(menu._get_specified_sub_menu_template_name(level=3), None)
+        self.assertEqual(menu._get_specified_sub_menu_template_name(level=4), None)
 
     def test_returns_last_template_when_no_template_specified_for_level(self):
         menu = MainMenu.objects.all().first()
         menu._option_vals = utils.make_optionvals_instance(
-            sub_menu_template_names=('single_template.html',)
+            sub_menu_template_names=("single_template.html",)
         )
         self.assertEqual(
-            menu._get_specified_sub_menu_template_name(level=2),
-            'single_template.html'
+            menu._get_specified_sub_menu_template_name(level=2), "single_template.html"
         )
         self.assertEqual(
-            menu._get_specified_sub_menu_template_name(level=3),
-            'single_template.html'
+            menu._get_specified_sub_menu_template_name(level=3), "single_template.html"
         )
 
     def test_preference_order_of_specified_values(self):
         menu = MainMenu.objects.all().first()
         menu._option_vals = utils.make_optionvals_instance(
-            sub_menu_template_name='single_template_as_option.html',
-            sub_menu_template_names=('option_one.html', 'option_two.html')
+            sub_menu_template_name="single_template_as_option.html",
+            sub_menu_template_names=("option_one.html", "option_two.html"),
         )
-        menu.sub_menu_template_name = 'single_template_as_attr.html'
+        menu.sub_menu_template_name = "single_template_as_attr.html"
         menu.sub_menu_template_names = utils.SUB_MENU_TEMPLATE_LIST
 
         # While both 'sub_menu_template_name' and 'sub_menu_template_names' are
@@ -188,29 +173,28 @@ class TestGetSpecifiedSubMenuTemplateName(MainMenuTestCase):
         # be preferred
         self.assertEqual(
             menu._get_specified_sub_menu_template_name(level=4),
-            'single_template_as_option.html'
+            "single_template_as_option.html",
         )
 
         # If only 'sub_menu_template_names' is specified as an option value,
         # that will be preferred
         menu._option_vals = utils.make_optionvals_instance(
             sub_menu_template_name=None,
-            sub_menu_template_names=('option_one.html', 'option_two.html')
+            sub_menu_template_names=("option_one.html", "option_two.html"),
         )
         self.assertEqual(
             menu._get_specified_sub_menu_template_name(level=4),
-            'option_two.html',
+            "option_two.html",
         )
 
         # If no templates have been specified via options, the
         # 'sub_menu_template_name' attribute is preferred
         menu._option_vals = utils.make_optionvals_instance(
-            sub_menu_template_name=None,
-            sub_menu_template_names=None
+            sub_menu_template_name=None, sub_menu_template_names=None
         )
         self.assertEqual(
             menu._get_specified_sub_menu_template_name(level=4),
-            'single_template_as_attr.html'
+            "single_template_as_attr.html",
         )
 
         # If the 'sub_menu_template_name' attribute is None, the method
@@ -218,7 +202,7 @@ class TestGetSpecifiedSubMenuTemplateName(MainMenuTestCase):
         menu.sub_menu_template_name = None
         self.assertEqual(
             menu._get_specified_sub_menu_template_name(level=4),
-            menu.sub_menu_template_names[1]
+            menu.sub_menu_template_names[1],
         )
 
 
@@ -229,18 +213,18 @@ class TestGetSubMenuTemplateNames(
     Tests MainMenu.get_sub_menu_template_names() using common test cases
     from base.GetTemplateNamesMethodTestCase
     """
+
     expected_default_result_length = 4
 
 
-class TestGetTemplateNames(
-    MainMenuTestCase, base.GetTemplateNamesMethodTestCase
-):
+class TestGetTemplateNames(MainMenuTestCase, base.GetTemplateNamesMethodTestCase):
     """
     Tests MainMenu.get_template_names() using common test cases from
     base.GetTemplateNamesMethodTestCase
     """
+
     expected_default_result_length = 3
 
 
 def mock_relative_url_method(self, site=None):
-    return ''
+    return ""

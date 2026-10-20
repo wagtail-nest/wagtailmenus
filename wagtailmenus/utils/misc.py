@@ -27,7 +27,7 @@ def get_fake_request():
 
 
 def get_site_from_request(request, fallback_to_default=True):
-    site = getattr(request, 'site', None)
+    site = getattr(request, "site", None)
     if isinstance(site, Site):
         return request.site
     site = Site.find_for_request(request)
@@ -51,7 +51,7 @@ def derive_page(request, site, accept_best_match=True, max_subsequent_route_fail
     fails more that ``max_subsequent_route_failures`` times in a row.
     """
     routing_point = site.root_page.specific
-    path_components = [pc for pc in request.path.split('/') if pc]
+    path_components = [pc for pc in request.path.split("/") if pc]
 
     if not accept_best_match:
         try:
@@ -103,6 +103,7 @@ def derive_section_root(page):
     value of the ``WAGTAILMENUS_SECTION_ROOT_DEPTH`` setting.
     """
     from wagtailmenus.conf import settings
+
     desired_depth = settings.SECTION_ROOT_DEPTH
     if page.depth == desired_depth:
         return page.specific
@@ -110,8 +111,9 @@ def derive_section_root(page):
         return page.get_ancestors().get(depth=desired_depth).specific
 
 
-def validate_supplied_values(tag, max_levels=None, parent_page=None,
-                             menuitem_or_page=None):
+def validate_supplied_values(
+    tag, max_levels=None, parent_page=None, menuitem_or_page=None
+):
     if max_levels is not None:
         if max_levels not in (1, 2, 3, 4, 5):
             raise ValueError(
@@ -122,13 +124,12 @@ def validate_supplied_values(tag, max_levels=None, parent_page=None,
         if not isinstance(parent_page, Page):
             raise ValueError(
                 "The `%s` tag expects `parent_page` to be a `Page` instance. "
-                "A value of type `%s` was supplied." %
-                (tag, parent_page.__class__)
+                "A value of type `%s` was supplied." % (tag, parent_page.__class__)
             )
     if menuitem_or_page is not None:
         if not isinstance(menuitem_or_page, (Page, MenuItem)):
             raise ValueError(
                 "The `%s` tag expects `menuitem_or_page` to be a `Page` or "
-                "`MenuItem` instance. A value of type `%s` was supplied." %
-                (tag, menuitem_or_page.__class__)
+                "`MenuItem` instance. A value of type `%s` was supplied."
+                % (tag, menuitem_or_page.__class__)
             )

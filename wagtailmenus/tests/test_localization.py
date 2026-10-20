@@ -47,7 +47,9 @@ class TestLocalizationSetting(TestCase):
     def test_auto_detection_from_wagtail_i18n_enabled(self):
         self.assertTrue(settings.LOCALIZE_MENU_ITEMS)
 
-    @override_settings(WAGTAIL_I18N_ENABLED=True, WAGTAILMENUS_LOCALIZE_MENU_ITEMS=False)
+    @override_settings(
+        WAGTAIL_I18N_ENABLED=True, WAGTAILMENUS_LOCALIZE_MENU_ITEMS=False
+    )
     def test_explicit_false_overrides_wagtail_i18n_enabled(self):
         """An explicit opt-out must not be overridden by WAGTAIL_I18N_ENABLED."""
         self.assertFalse(settings.LOCALIZE_MENU_ITEMS)
@@ -60,20 +62,20 @@ class TestLocalizationSetting(TestCase):
 class TestMenuItemLocalizationRenderTime(TestCase):
     """Localization is applied at render time."""
 
-    fixtures = ['test.json']
+    fixtures = ["test.json"]
 
     def test_top_level_items_link_page_unchanged_when_disabled(self):
         """When the feature is off, link_page is whatever is stored."""
         menu = MainMenu.objects.get(pk=1)
-        first_item = menu.get_menu_items_manager().filter(
-            link_page__isnull=False
-        ).first()
+        first_item = (
+            menu.get_menu_items_manager().filter(link_page__isnull=False).first()
+        )
         item_pk = first_item.pk
         original_page_pk = first_item.link_page_id
 
         items = menu.get_top_level_items()
 
-        matched = [i for i in items if getattr(i, 'pk', None) == item_pk]
+        matched = [i for i in items if getattr(i, "pk", None) == item_pk]
         self.assertTrue(len(matched) > 0)
         self.assertEqual(matched[0].link_page.pk, original_page_pk)
 
@@ -81,20 +83,22 @@ class TestMenuItemLocalizationRenderTime(TestCase):
     def test_top_level_items_link_page_swapped_when_enabled(self):
         """When localization is on, item.link_page is set to the localized page."""
         menu = MainMenu.objects.get(pk=1)
-        first_item = menu.get_menu_items_manager().filter(
-            link_page__isnull=False
-        ).first()
+        first_item = (
+            menu.get_menu_items_manager().filter(link_page__isnull=False).first()
+        )
         item_pk = first_item.pk  # stable menu item pk, not the page FK
         en_page = first_item.link_page
-        it_page = Page.objects.exclude(pk=en_page.pk).filter(
-            live=True, expired=False, show_in_menus=True
-        ).first()
+        it_page = (
+            Page.objects.exclude(pk=en_page.pk)
+            .filter(live=True, expired=False, show_in_menus=True)
+            .first()
+        )
 
         mapping = _LocalizedMapping({en_page.pk: it_page})
-        with patch.object(Page, 'localized', mapping):
+        with patch.object(Page, "localized", mapping):
             items = menu.get_top_level_items()
 
-        matched = [i for i in items if getattr(i, 'pk', None) == item_pk]
+        matched = [i for i in items if getattr(i, "pk", None) == item_pk]
         self.assertTrue(len(matched) > 0)
         self.assertEqual(matched[0].link_page.pk, it_page.pk)
 
@@ -102,16 +106,18 @@ class TestMenuItemLocalizationRenderTime(TestCase):
     def test_stored_link_page_id_not_mutated_by_render(self):
         """The FK column (link_page_id) must not change after get_top_level_items()."""
         menu = MainMenu.objects.get(pk=1)
-        first_item = menu.get_menu_items_manager().filter(
-            link_page__isnull=False
-        ).first()
+        first_item = (
+            menu.get_menu_items_manager().filter(link_page__isnull=False).first()
+        )
         en_page = first_item.link_page
-        it_page = Page.objects.exclude(pk=en_page.pk).filter(
-            live=True, expired=False, show_in_menus=True
-        ).first()
+        it_page = (
+            Page.objects.exclude(pk=en_page.pk)
+            .filter(live=True, expired=False, show_in_menus=True)
+            .first()
+        )
 
         mapping = _LocalizedMapping({en_page.pk: it_page})
-        with patch.object(Page, 'localized', mapping):
+        with patch.object(Page, "localized", mapping):
             menu.get_top_level_items()
 
         # Re-read the item from DB: the FK must still be the original en page
@@ -124,7 +130,7 @@ class TestMenuItemLocalizationRenderTime(TestCase):
         both top_level_items and pages_for_display are unchanged."""
         menu = MainMenu.objects.get(pk=1)
         mapping = _LocalizedMapping({})
-        with patch.object(Page, 'localized', mapping):
+        with patch.object(Page, "localized", mapping):
             items = menu.get_top_level_items()
             pages = menu.get_pages_for_display()
         self.assertEqual(len(items), 5)
@@ -135,9 +141,9 @@ class TestMenuItemLocalizationRenderTime(TestCase):
         """Custom URL items (no link_page) are always included unchanged."""
         menu = MainMenu.objects.get(pk=1)
         mapping = _LocalizedMapping({})
-        with patch.object(Page, 'localized', mapping):
+        with patch.object(Page, "localized", mapping):
             items = menu.get_top_level_items()
-        url_items = [i for i in items if not getattr(i, 'link_page_id', None)]
+        url_items = [i for i in items if not getattr(i, "link_page_id", None)]
         # All URL-only items must still be present
         for item in url_items:
             self.assertIsNone(item.link_page)
@@ -148,20 +154,22 @@ class TestGetPagesForDisplayLocalization(TestCase):
     get_pages_for_display() returns localized pages when the feature is on.
     """
 
-    fixtures = ['test.json']
+    fixtures = ["test.json"]
 
     def _get_menu_and_first_item_pages(self):
         """Return (menu, en_page, it_page) where it_page != en_page."""
         menu = MainMenu.objects.get(pk=1)
         # Pick the first item that has a link_page
-        first_item = menu.get_menu_items_manager().filter(
-            link_page__isnull=False
-        ).first()
+        first_item = (
+            menu.get_menu_items_manager().filter(link_page__isnull=False).first()
+        )
         en_page = first_item.link_page
         # Use any *other* live page as the fake localized counterpart
-        it_page = Page.objects.exclude(pk=en_page.pk).filter(
-            live=True, expired=False, show_in_menus=True
-        ).first()
+        it_page = (
+            Page.objects.exclude(pk=en_page.pk)
+            .filter(live=True, expired=False, show_in_menus=True)
+            .first()
+        )
         return menu, en_page, it_page
 
     def test_pages_for_display_unchanged_when_disabled(self):
@@ -176,7 +184,7 @@ class TestGetPagesForDisplayLocalization(TestCase):
         # Map: en_page → it_page; everything else stays the same
         mapping = _LocalizedMapping({en_page.pk: it_page})
 
-        with patch.object(Page, 'localized', mapping):
+        with patch.object(Page, "localized", mapping):
             # Bypass the @cached_property so we get a fresh result
             pages = menu.get_pages_for_display()
             page_ids = {p.id for p in pages}
@@ -189,26 +197,30 @@ class TestGetPagesForDisplayLocalization(TestCase):
 
         # Only the single-page (no allow_subnav) case for a clean assertion:
         # find an item where allow_subnav is False
-        item = menu.get_menu_items_manager().filter(
-            link_page__isnull=False, allow_subnav=False
-        ).first()
+        item = (
+            menu.get_menu_items_manager()
+            .filter(link_page__isnull=False, allow_subnav=False)
+            .first()
+        )
         if item is None:
             self.skipTest("No allow_subnav=False item in fixture")
 
         en_page = item.link_page
         # Pick a page not otherwise in the menu as the fake translation
         menu_page_ids = set(
-            menu.get_menu_items_manager().values_list('link_page_id', flat=True)
+            menu.get_menu_items_manager().values_list("link_page_id", flat=True)
         )
-        it_page = Page.objects.filter(
-            live=True, expired=False, show_in_menus=True
-        ).exclude(pk__in=menu_page_ids).first()
+        it_page = (
+            Page.objects.filter(live=True, expired=False, show_in_menus=True)
+            .exclude(pk__in=menu_page_ids)
+            .first()
+        )
         if it_page is None:
             self.skipTest("Not enough pages in fixture for this test")
 
         mapping = _LocalizedMapping({en_page.pk: it_page})
 
-        with patch.object(Page, 'localized', mapping):
+        with patch.object(Page, "localized", mapping):
             pages = menu.get_pages_for_display()
             page_ids = {p.id for p in pages}
 
@@ -223,7 +235,7 @@ class TestLocalizationRegressionWhenDisabled(TestCase):
     identically to before when LOCALIZE_MENU_ITEMS is False (the default).
     """
 
-    fixtures = ['test.json']
+    fixtures = ["test.json"]
 
     def test_top_level_items_count_unchanged(self):
         menu = MainMenu.objects.get(pk=1)
@@ -248,7 +260,7 @@ class TestSubtreeLocalization(TestCase):
     different page with children, pages_for_display() includes the localized
     subtree, not the original one."""
 
-    fixtures = ['test.json']
+    fixtures = ["test.json"]
 
     @override_settings(WAGTAILMENUS_LOCALIZE_MENU_ITEMS=True)
     def test_subtree_includes_localized_parent_and_children(self):
@@ -260,11 +272,15 @@ class TestSubtreeLocalization(TestCase):
         # Find a parent page that has allow_subnav and children in the fixture
         # We need a page at depth >= SECTION_ROOT_DEPTH (3) with children
         # that has a menu item with allow_subnav=True
-        item = menu.get_menu_items_manager().filter(
-            link_page__isnull=False,
-            allow_subnav=True,
-            link_page__depth__gte=3,       # SECTION_ROOT_DEPTH
-        ).first()
+        item = (
+            menu.get_menu_items_manager()
+            .filter(
+                link_page__isnull=False,
+                allow_subnav=True,
+                link_page__depth__gte=3,  # SECTION_ROOT_DEPTH
+            )
+            .first()
+        )
 
         if item is None:
             self.skipTest("No menu item with allow_subnav and depth>=3 in fixture")
@@ -274,17 +290,25 @@ class TestSubtreeLocalization(TestCase):
             path__startswith=en_page.path,
             depth__gt=en_page.depth,
             depth__lt=en_page.depth + menu.max_levels,
-            live=True, expired=False, show_in_menus=True,
+            live=True,
+            expired=False,
+            show_in_menus=True,
         )
         if not en_page_children.exists():
             self.skipTest("Parent page has no children in fixture")
 
         # Find a localized counterpart page with its own children
         # Pick a different page at the same depth with children as the "localized" version
-        localized_page = Page.objects.filter(
-            depth=en_page.depth,
-            live=True, expired=False, show_in_menus=True,
-        ).exclude(pk=en_page.pk).first()
+        localized_page = (
+            Page.objects.filter(
+                depth=en_page.depth,
+                live=True,
+                expired=False,
+                show_in_menus=True,
+            )
+            .exclude(pk=en_page.pk)
+            .first()
+        )
         if localized_page is None:
             self.skipTest("No alternative page at same depth in fixture")
 
@@ -292,7 +316,9 @@ class TestSubtreeLocalization(TestCase):
             path__startswith=localized_page.path,
             depth__gt=localized_page.depth,
             depth__lt=localized_page.depth + menu.max_levels,
-            live=True, expired=False, show_in_menus=True,
+            live=True,
+            expired=False,
+            show_in_menus=True,
         )
         if not localized_children.exists():
             self.skipTest("Localized page has no children in fixture")
@@ -300,22 +326,34 @@ class TestSubtreeLocalization(TestCase):
         # Build a mapping: en_page → localized_page
         mapping = _LocalizedMapping({en_page.pk: localized_page})
 
-        with patch.object(Page, 'localized', mapping):
+        with patch.object(Page, "localized", mapping):
             pages = menu.get_pages_for_display()
             page_ids = {p.id for p in pages}
 
         # The localized page and its children SHOULD be in pages_for_display
-        self.assertIn(localized_page.pk, page_ids,
-                      "Localized parent page should be in pages_for_display")
+        self.assertIn(
+            localized_page.pk,
+            page_ids,
+            "Localized parent page should be in pages_for_display",
+        )
         for child in localized_children:
-            self.assertIn(child.pk, page_ids,
-                          f"Child page {child.pk} of localized parent should be in pages_for_display")
+            self.assertIn(
+                child.pk,
+                page_ids,
+                f"Child page {child.pk} of localized parent should be in pages_for_display",
+            )
 
         # The original en_page should NOT be in pages_for_display
         # (unless it's also linked from another menu item — we skip in that case)
-        other_items_link_to_en = menu.get_menu_items_manager().filter(
-            link_page_id=en_page.pk
-        ).exclude(pk=item.pk).exists()
+        other_items_link_to_en = (
+            menu.get_menu_items_manager()
+            .filter(link_page_id=en_page.pk)
+            .exclude(pk=item.pk)
+            .exists()
+        )
         if not other_items_link_to_en:
-            self.assertNotIn(en_page.pk, page_ids,
-                             "Original page should not be in pages_for_display when localized")
+            self.assertNotIn(
+                en_page.pk,
+                page_ids,
+                "Original page should not be in pages_for_display when localized",
+            )

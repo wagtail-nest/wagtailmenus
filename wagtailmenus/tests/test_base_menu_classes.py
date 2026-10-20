@@ -6,13 +6,12 @@ from wagtailmenus.models import Menu, MenuWithMenuItems
 
 
 class TestMenuGetSite(TestCase):
-
     def setUp(self):
         super().setUp()
         self.site = Site.objects.get()
 
     def test_returns_site_from_context(self):
-        result = Menu._get_site({'site': self.site})
+        result = Menu._get_site({"site": self.site})
         self.assertIs(result, self.site)
 
     def test_returns_site_from_request(self):
@@ -20,7 +19,7 @@ class TestMenuGetSite(TestCase):
             site = self.site
             _wagtail_site = self.site
 
-        result = Menu._get_site({'request': FakeRequest})
+        result = Menu._get_site({"request": FakeRequest})
         self.assertIs(result, self.site)
 
     def test_returns_none_if_request_and_site_not_present(self):
@@ -29,14 +28,15 @@ class TestMenuGetSite(TestCase):
 
 
 class TestMenuWithMenuItemsGetSite(TestCase):
-
     def setUp(self):
         super().setUp()
         self.site = Site.objects.get()
-        self.other_site = Site.objects.create(hostname='other.com', port=80, root_page=Page.objects.first())
+        self.other_site = Site.objects.create(
+            hostname="other.com", port=80, root_page=Page.objects.first()
+        )
 
     def test_returns_site_from_context(self):
-        result = MenuWithMenuItems._get_site({'site': self.site})
+        result = MenuWithMenuItems._get_site({"site": self.site})
         self.assertIs(result, self.site)
 
     def test_returns_site_from_request(self):
@@ -44,7 +44,7 @@ class TestMenuWithMenuItemsGetSite(TestCase):
             site = self.site
             _wagtail_site = self.site
 
-        result = MenuWithMenuItems._get_site({'request': FakeRequest})
+        result = MenuWithMenuItems._get_site({"request": FakeRequest})
         self.assertIs(result, self.site)
 
     def test_errors_if_request_and_site_not_present_and_multiple_sites_exist(self):

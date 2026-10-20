@@ -1,15 +1,18 @@
 from django.utils.functional import SimpleLazyObject
 
 from wagtailmenus.conf import settings
-from wagtailmenus.utils.misc import (derive_page, derive_section_root,
-                                     get_site_from_request)
+from wagtailmenus.utils.misc import (
+    derive_page,
+    derive_section_root,
+    get_site_from_request,
+)
 
 
 def wagtailmenus(request):
 
     def _get_wagtailmenus_vals():
-        current_page = request.META.get('WAGTAILMENUS_CURRENT_PAGE')
-        section_root = request.META.get('WAGTAILMENUS_CURRENT_SECTION_ROOT')
+        current_page = request.META.get("WAGTAILMENUS_CURRENT_PAGE")
+        section_root = request.META.get("WAGTAILMENUS_CURRENT_SECTION_ROOT")
         site = get_site_from_request(request, fallback_to_default=True)
         ancestor_ids = ()
         match = None
@@ -28,15 +31,18 @@ def wagtailmenus(request):
         if current_page or match:
             page = current_page or match
             if page.depth >= section_root_depth:
-                ancestor_ids = page.get_ancestors(inclusive=True).filter(
-                    depth__gte=section_root_depth).values_list('id', flat=True)
+                ancestor_ids = (
+                    page.get_ancestors(inclusive=True)
+                    .filter(depth__gte=section_root_depth)
+                    .values_list("id", flat=True)
+                )
 
         return {
-            'current_page': current_page,
-            'section_root': section_root,
-            'current_page_ancestor_ids': ancestor_ids,
+            "current_page": current_page,
+            "section_root": section_root,
+            "current_page_ancestor_ids": ancestor_ids,
         }
 
     return {
-        'wagtailmenus_vals': SimpleLazyObject(_get_wagtailmenus_vals),
+        "wagtailmenus_vals": SimpleLazyObject(_get_wagtailmenus_vals),
     }

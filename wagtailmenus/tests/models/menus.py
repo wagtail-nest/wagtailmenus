@@ -2,9 +2,14 @@ from django.db import models
 from modelcluster.fields import ParentalKey
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel, PageChooserPanel
 
-from wagtailmenus.models import (AbstractFlatMenu, AbstractFlatMenuItem,
-                                 AbstractMainMenu, AbstractMainMenuItem,
-                                 ChildrenMenu, SectionMenu)
+from wagtailmenus.models import (
+    AbstractFlatMenu,
+    AbstractFlatMenuItem,
+    AbstractMainMenu,
+    AbstractMainMenuItem,
+    ChildrenMenu,
+    SectionMenu,
+)
 
 from .utils import TranslatedField
 
@@ -19,38 +24,38 @@ class CustomSectionMenu(SectionMenu):
 
 class MultilingualMenuItem(models.Model):
     link_text_de = models.CharField(
-        verbose_name='link text (de)',
+        verbose_name="link text (de)",
         max_length=255,
         blank=True,
     )
     link_text_fr = models.CharField(
-        verbose_name='link text (fr)',
+        verbose_name="link text (fr)",
         max_length=255,
         blank=True,
     )
-    translated_link_text = TranslatedField(
-        'link_text', 'link_text_de', 'link_text_fr'
-    )
+    translated_link_text = TranslatedField("link_text", "link_text_de", "link_text_fr")
 
     class Meta:
         abstract = True
-        ordering = ('sort_order',)
+        ordering = ("sort_order",)
 
     @property
     def menu_text(self):
-        return self.translated_link_text or getattr(
-            self.link_page, 'translated_title', None
-        ) or self.link_page.title
+        return (
+            self.translated_link_text
+            or getattr(self.link_page, "translated_title", None)
+            or self.link_page.title
+        )
 
     panels = (
-        PageChooserPanel('link_page'),
-        FieldPanel('link_url'),
-        FieldPanel('url_append'),
-        FieldPanel('link_text'),
-        FieldPanel('link_text_de'),
-        FieldPanel('link_text_fr'),
-        FieldPanel('handle'),
-        FieldPanel('allow_subnav'),
+        PageChooserPanel("link_page"),
+        FieldPanel("link_url"),
+        FieldPanel("url_append"),
+        FieldPanel("link_text"),
+        FieldPanel("link_text_de"),
+        FieldPanel("link_text_fr"),
+        FieldPanel("handle"),
+        FieldPanel("allow_subnav"),
     )
 
 
@@ -60,10 +65,11 @@ class MainMenuCustomMenuItem(MultilingualMenuItem, AbstractMainMenuItem):
 
     `WAGTAILMENUS_MAIN_MENU_ITEMS_RELATED_NAME = 'custom_menu_items'
     """
+
     menu = ParentalKey(
-        'wagtailmenus.MainMenu',
+        "wagtailmenus.MainMenu",
         on_delete=models.CASCADE,
-        related_name="custom_menu_items"
+        related_name="custom_menu_items",
     )
 
 
@@ -75,9 +81,9 @@ class FlatMenuCustomMenuItem(MultilingualMenuItem, AbstractFlatMenuItem):
     """
 
     menu = ParentalKey(
-        'wagtailmenus.FlatMenu',
+        "wagtailmenus.FlatMenu",
         on_delete=models.CASCADE,
-        related_name="custom_menu_items"
+        related_name="custom_menu_items",
     )
 
 
@@ -87,36 +93,34 @@ class CustomMainMenu(AbstractMainMenu):
 
 class CustomFlatMenu(AbstractFlatMenu):
     heading_de = models.CharField(
-        verbose_name='heading (de)',
+        verbose_name="heading (de)",
         max_length=255,
         blank=True,
     )
     heading_fr = models.CharField(
-        verbose_name='heading (fr)',
+        verbose_name="heading (fr)",
         max_length=255,
         blank=True,
     )
-    translated_heading = TranslatedField(
-        'heading', 'heading_de', 'heading_fr'
-    )
+    translated_heading = TranslatedField("heading", "heading_de", "heading_fr")
 
     content_panels = (
         MultiFieldPanel(
             heading="Settings",
             children=(
-                FieldPanel('title'),
-                FieldPanel('site'),
-                FieldPanel('handle'),
-            )
+                FieldPanel("title"),
+                FieldPanel("site"),
+                FieldPanel("handle"),
+            ),
         ),
         MultiFieldPanel(
             heading="Heading",
             children=(
-                FieldPanel('heading'),
-                FieldPanel('heading_de'),
-                FieldPanel('heading_fr'),
+                FieldPanel("heading"),
+                FieldPanel("heading_de"),
+                FieldPanel("heading_fr"),
             ),
-            classname='collapsible'
+            classname="collapsible",
         ),
         AbstractFlatMenu.content_panels[1],
     )
@@ -130,9 +134,7 @@ class CustomMainMenuItem(MultilingualMenuItem, AbstractMainMenuItem):
     overridden ('menu_items' is the default value)."""
 
     menu = ParentalKey(
-        'CustomMainMenu',
-        on_delete=models.CASCADE,
-        related_name="menu_items"
+        "CustomMainMenu", on_delete=models.CASCADE, related_name="menu_items"
     )
 
 
@@ -144,7 +146,5 @@ class CustomFlatMenuItem(MultilingualMenuItem, AbstractFlatMenuItem):
     overridden ('menu_items' is the default value)."""
 
     menu = ParentalKey(
-        'CustomFlatMenu',
-        on_delete=models.CASCADE,
-        related_name="menu_items"
+        "CustomFlatMenu", on_delete=models.CASCADE, related_name="menu_items"
     )

@@ -108,6 +108,29 @@ If you'd like a runnable Django project to help with development of wagtailmenus
 Your local copies of ``settings/development.py`` and ``manage.py`` will be ignored by git when you push any changes, as will anything you add to the ``wagtailmenus/development/`` directory.
 
 
+Linting and formatting
+======================
+
+Python code is linted and formatted with `ruff <https://docs.astral.sh/ruff/>`_, and Django templates are indented with `djhtml <https://github.com/rtts/djhtml>`_. Both run through `pre-commit <https://pre-commit.com/>`_, which is included in the ``development`` extras. Install the git hook once, and your changes will be checked on every commit:
+
+.. code-block:: console
+
+    pip install -e '.[development]'
+    pre-commit install
+
+To check (and fix) every file in the repository, run:
+
+.. code-block:: console
+
+    pre-commit run --all-files
+
+To keep ``git blame`` useful, tell git to skip the commits listed in ``.git-blame-ignore-revs`` (these are bulk formatting changes):
+
+.. code-block:: console
+
+    git config blame.ignoreRevsFile .git-blame-ignore-revs
+
+
 Running the test suite
 ======================
 

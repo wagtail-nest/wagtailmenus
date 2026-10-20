@@ -2,6 +2,7 @@
 Called by GitHub Actions when the nightly build fails.
 This reports an error to the #nightly-build-failures Slack channel.
 """
+
 import json
 import os
 import urllib.request
@@ -23,9 +24,11 @@ def report_nightly_build_failure():
     print("Reporting to #nightly-build-failures slack channel")
     request = urllib.request.Request(
         webhook_url,
-        data=json.dumps({
-            "text": f"A Nightly build failed. See {url}",
-        }).encode(),
+        data=json.dumps(
+            {
+                "text": f"A Nightly build failed. See {url}",
+            }
+        ).encode(),
         headers={"Content-Type": "application/json"},
     )
     with urllib.request.urlopen(request, timeout=10) as response:

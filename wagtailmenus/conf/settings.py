@@ -1,7 +1,7 @@
 import sys
 
-from django.conf import settings as django_settings
 from cogwheels import BaseAppSettingsHelper
+from django.conf import settings as django_settings
 
 
 class WagtailmenusSettingsHelper(BaseAppSettingsHelper):
@@ -11,8 +11,10 @@ class WagtailmenusSettingsHelper(BaseAppSettingsHelper):
         value = super().__getattr__(name)
         # Auto-detect locale-awareness from Wagtail's own i18n flag when the
         # wagtailmenus-specific setting has not been explicitly overridden.
-        if name == 'LOCALIZE_MENU_ITEMS' and not self.is_overridden('LOCALIZE_MENU_ITEMS'):
-            return bool(getattr(django_settings, 'WAGTAIL_I18N_ENABLED', False))
+        if name == "LOCALIZE_MENU_ITEMS" and not self.is_overridden(
+            "LOCALIZE_MENU_ITEMS"
+        ):
+            return bool(getattr(django_settings, "WAGTAIL_I18N_ENABLED", False))
         return value
 
 
