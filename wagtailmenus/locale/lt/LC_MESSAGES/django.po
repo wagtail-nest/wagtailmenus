@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-22 14:05+0100\n"
+"POT-Creation-Date: 2026-10-21 15:05+0100\n"
 "PO-Revision-Date: 2017-03-20 23:04+0000\n"
 "Last-Translator: Andy Babic, 2018\n"
 "Language-Team: Lithuanian (https://www.transifex.com/rkhleics/teams/73023/"
@@ -41,69 +41,69 @@ msgstr "3: Leist 2 lygių sub-navigaciją"
 msgid "4: Allow 3 levels of sub-navigation"
 msgstr "4: Leisti 3 lygių sub-navigaciją"
 
-#: wagtailmenus/forms.py:32
+#: wagtailmenus/forms.py:33
 msgid "By default, this will be used as the link text when appearing in menus."
 msgstr ""
 "Pagal nutylėjimą, tai bus naudojama kaip nuorodos tekstas kuris bus "
 "atvaizduojamas meniu."
 
-#: wagtailmenus/menuadmin.py:83
+#: wagtailmenus/menuadmin.py:92
 msgid "Main menu"
 msgstr "Pagrindinis meniu"
 
-#: wagtailmenus/menuadmin.py:92
+#: wagtailmenus/menuadmin.py:101
 msgid "The menu could not be saved due to errors."
 msgstr "Meniu negalėjo būti išsaugotas dėl klaidų."
 
-#: wagtailmenus/menuadmin.py:97 wagtailmenus/menuadmin.py:150
+#: wagtailmenus/menuadmin.py:107 wagtailmenus/menuadmin.py:163
 msgid "Content"
 msgstr "Turinys"
 
-#: wagtailmenus/menuadmin.py:98 wagtailmenus/menuadmin.py:151
-#: wagtailmenus/panels.py:87
+#: wagtailmenus/menuadmin.py:109 wagtailmenus/menuadmin.py:165
+#: wagtailmenus/panels.py:86
 msgid "Settings"
 msgstr "Nustatymai"
 
-#: wagtailmenus/menuadmin.py:130
+#: wagtailmenus/menuadmin.py:142
 #, fuzzy
 #| msgid "The menu could not be saved due to errors."
 msgid "The flat menu could not be saved due to errors"
 msgstr "Meniu negalėjo būti išsaugotas dėl klaidų."
 
-#: wagtailmenus/menuadmin.py:135
+#: wagtailmenus/menuadmin.py:147
 msgid "Flat menus"
 msgstr "Plokšti meniu"
 
-#: wagtailmenus/menuadmin.py:147
+#: wagtailmenus/menuadmin.py:159
 #, fuzzy
 #| msgid "The menu could not be saved due to errors."
 msgid "The flat menu could not be saved due to errors."
 msgstr "Meniu negalėjo būti išsaugotas dėl klaidų."
 
-#: wagtailmenus/models/menuitems.py:32 wagtailmenus/models/pages.py:140
+#: wagtailmenus/models/menuitems.py:35 wagtailmenus/models/pages.py:156
 msgid "link to an internal page"
 msgstr "nurodyti į vidinį puslapį"
 
-#: wagtailmenus/models/menuitems.py:38 wagtailmenus/models/pages.py:147
+#: wagtailmenus/models/menuitems.py:41 wagtailmenus/models/pages.py:163
 msgid "link to a custom URL"
 msgstr "nurodyti į specifinį URL"
 
-#: wagtailmenus/models/menuitems.py:44 wagtailmenus/models/pages.py:153
+#: wagtailmenus/models/menuitems.py:47 wagtailmenus/models/pages.py:169
 msgid "append to URL"
 msgstr "pridėti prie URL"
 
-#: wagtailmenus/models/menuitems.py:48
+#: wagtailmenus/models/menuitems.py:51
 msgid ""
 "Use this to optionally append a #hash or querystring to the above page's URL."
 msgstr ""
 "Naudokite tai, kad pridėti #hash arba užklausos tekstą šio puslapio URL."
 
-#: wagtailmenus/models/menuitems.py:53 wagtailmenus/models/menus.py:1179
-#: wagtailmenus/models/menus.py:1212
+#: wagtailmenus/models/menuitems.py:56 wagtailmenus/models/menus.py:1242
+#: wagtailmenus/models/menus.py:1279
 msgid "handle"
 msgstr "papildomas atributas"
 
-#: wagtailmenus/models/menuitems.py:57
+#: wagtailmenus/models/menuitems.py:60
 msgid ""
 "Use this field to optionally specify an additional value for each menu item, "
 "which you can then reference in custom menu templates."
@@ -111,11 +111,11 @@ msgstr ""
 "Naudokite šį lauką kad nustatyti papildomą reikšmę kiekvienam meniu punktui, "
 "kurią vėliau galite pasiekti sukurtuose meniu šablonuose."
 
-#: wagtailmenus/models/menuitems.py:63
+#: wagtailmenus/models/menuitems.py:66
 msgid "link text"
 msgstr "nuorodos tekstas"
 
-#: wagtailmenus/models/menuitems.py:67
+#: wagtailmenus/models/menuitems.py:70
 msgid ""
 "Provide the text to use for a custom URL, or set on an internal page link to "
 "use instead of the page's title."
@@ -123,19 +123,19 @@ msgstr ""
 "Pateikite tekstą kuris bus naudojamas specifiniam URL, arba nustatykite "
 "vidinio puslapio nuorodą kuri bus naudojama vietoje puslapio pavadinimo."
 
-#: wagtailmenus/models/menuitems.py:76 wagtailmenus/panels.py:19
+#: wagtailmenus/models/menuitems.py:79 wagtailmenus/panels.py:23
 msgid "menu item"
 msgstr "meniu punktas"
 
-#: wagtailmenus/models/menuitems.py:77
+#: wagtailmenus/models/menuitems.py:80
 msgid "menu items"
 msgstr "meniu punktai"
 
-#: wagtailmenus/models/menuitems.py:113 wagtailmenus/models/pages.py:207
+#: wagtailmenus/models/menuitems.py:113 wagtailmenus/models/pages.py:218
 msgid "Please choose an internal page or provide a custom URL"
 msgstr "Pasirinkite vidinį puslapi arba pateikite URL"
 
-#: wagtailmenus/models/menuitems.py:116 wagtailmenus/models/pages.py:212
+#: wagtailmenus/models/menuitems.py:116 wagtailmenus/models/pages.py:223
 msgid "Linking to both a page and custom URL is not permitted"
 msgstr "Nukreipimas kartu į puslapį ir URL yra negalimas"
 
@@ -143,11 +143,11 @@ msgstr "Nukreipimas kartu į puslapį ir URL yra negalimas"
 msgid "This field is required when linking to a custom URL"
 msgstr "Šis laukas privalomas kai nukreipiama į URL"
 
-#: wagtailmenus/models/menuitems.py:157 wagtailmenus/models/menuitems.py:173
+#: wagtailmenus/models/menuitems.py:154 wagtailmenus/models/menuitems.py:170
 msgid "allow sub-menu for this item"
 msgstr "įgalinti sub-meniu šiam punktui"
 
-#: wagtailmenus/models/menuitems.py:160 wagtailmenus/models/menuitems.py:176
+#: wagtailmenus/models/menuitems.py:157 wagtailmenus/models/menuitems.py:173
 msgid ""
 "NOTE: The sub-menu might not be displayed, even if checked. It depends on "
 "how the menu is used in this project's templates."
@@ -155,15 +155,15 @@ msgstr ""
 "Pastaba: Sub-meniu gali būti nerodomas, net jei ir pažymėta. Tai priklauso "
 "nuo to kaip meniu yra naudojamas projekto šablonuose."
 
-#: wagtailmenus/models/menus.py:1092 wagtailmenus/models/menus.py:1168
+#: wagtailmenus/models/menus.py:1145 wagtailmenus/models/menus.py:1231
 msgid "site"
 msgstr "tinklalapis"
 
-#: wagtailmenus/models/menus.py:1099 wagtailmenus/models/menus.py:1193
+#: wagtailmenus/models/menus.py:1152 wagtailmenus/models/menus.py:1256
 msgid "maximum levels"
 msgstr "didžiausias galimas lygis"
 
-#: wagtailmenus/models/menus.py:1103
+#: wagtailmenus/models/menus.py:1158
 msgid ""
 "The maximum number of levels to display when rendering this menu. The value "
 "can be overidden by supplying a different <code>max_levels</code> value to "
@@ -173,24 +173,24 @@ msgstr ""
 "būti perrašyta pateikiant kitą <code>max_levels</code> reikšmę <code>{% "
 "main_menu %}</code> žymenoje šablonuose."
 
-#: wagtailmenus/models/menus.py:1112 wagtailmenus/models/menus.py:1113
+#: wagtailmenus/models/menus.py:1168 wagtailmenus/models/menus.py:1169
 msgid "main menu"
 msgstr "pagrindinis meniu"
 
-#: wagtailmenus/models/menus.py:1153
+#: wagtailmenus/models/menus.py:1216
 #, python-format
 msgid "Main menu for %(site_name)s"
 msgstr "Pagrindinis %(site_name)s meniu"
 
-#: wagtailmenus/models/menus.py:1174
+#: wagtailmenus/models/menus.py:1237
 msgid "title"
 msgstr "pavadinimas"
 
-#: wagtailmenus/models/menus.py:1176
+#: wagtailmenus/models/menus.py:1239
 msgid "For internal reference only."
 msgstr "Tik vidiniam pasirėmimui."
 
-#: wagtailmenus/models/menus.py:1182
+#: wagtailmenus/models/menus.py:1245
 msgid ""
 "Used to reference this menu in templates etc. Must be unique for the "
 "selected site."
@@ -198,15 +198,15 @@ msgstr ""
 "Naudojama pasiekiant šį meniu šablonuose. Turi būti unikalus pasirinktam "
 "tinklalapiui."
 
-#: wagtailmenus/models/menus.py:1187
+#: wagtailmenus/models/menus.py:1250
 msgid "heading"
 msgstr "Antraštė"
 
-#: wagtailmenus/models/menus.py:1190
+#: wagtailmenus/models/menus.py:1253
 msgid "If supplied, appears above the menu when rendered."
 msgstr "Jei pateikta, atvaizduojama virš meniu."
 
-#: wagtailmenus/models/menus.py:1197
+#: wagtailmenus/models/menus.py:1262
 msgid ""
 "The maximum number of levels to display when rendering this menu. The value "
 "can be overidden by supplying a different <code>max_levels</code> value to "
@@ -216,15 +216,15 @@ msgstr ""
 "būti perrašyta pateikiant kitą <code>max_levels</code> reikšmę <code>{% "
 "flat_menu %}</code> žymenoje šablonuose."
 
-#: wagtailmenus/models/menus.py:1207
+#: wagtailmenus/models/menus.py:1273
 msgid "flat menu"
 msgstr "plokščias meniu"
 
-#: wagtailmenus/models/menus.py:1208
+#: wagtailmenus/models/menus.py:1274
 msgid "flat menus"
 msgstr "plokšti meniu"
 
-#: wagtailmenus/models/menus.py:1217
+#: wagtailmenus/models/menus.py:1285
 msgid "no. of items"
 msgstr "vnt."
 
@@ -252,15 +252,15 @@ msgstr ""
 "pvz. 'Pagrindinė skiltis' arba 'Apie'. Jei bus palikta tuščia, bus naudojama "
 "puslapio antraštė."
 
-#: wagtailmenus/models/pages.py:157
+#: wagtailmenus/models/pages.py:172
 msgid "Use this to optionally append a #hash or querystring to the URL."
 msgstr "Papildomai pridėkite #hash'ą arba užklausos tekstą prie URL."
 
-#: wagtailmenus/models/pages.py:161
+#: wagtailmenus/models/pages.py:175
 msgid "menu item css classes"
 msgstr "meniu punkto css klasės"
 
-#: wagtailmenus/models/pages.py:165
+#: wagtailmenus/models/pages.py:179
 msgid ""
 "Optionally specify css classes to be added to this page when it appears in "
 "menus."
@@ -268,16 +268,16 @@ msgstr ""
 "Papildomai galite nurodyti css klases kurios bus pridėtos į šį puslapį kai "
 "jis bus atvaizduojamas meniu."
 
-#: wagtailmenus/models/pages.py:201
+#: wagtailmenus/models/pages.py:211
 msgid "A link page cannot link to another link page"
 msgstr "Nukreipiamasis puslapis negali nukreipti į kitą nukreipiamąjį puslapį."
 
-#: wagtailmenus/models/pages.py:289 wagtailmenus/models/pages.py:299
+#: wagtailmenus/models/pages.py:301 wagtailmenus/models/pages.py:310
 #, python-format
 msgid "This page redirects to: %(url)s"
 msgstr "Šis puslapis nukreipia į: %(url)s"
 
-#: wagtailmenus/panels.py:18
+#: wagtailmenus/panels.py:22
 msgid "Menu items"
 msgstr "Meniu punktai"
 
@@ -289,7 +289,7 @@ msgstr "Meniu detalės"
 msgid "Render settings"
 msgstr "Atvaizdavimo nustatymai"
 
-#: wagtailmenus/panels.py:98
+#: wagtailmenus/panels.py:96
 msgid "Advanced menu behaviour"
 msgstr "Išplėstinis meniu veikimas"
 
