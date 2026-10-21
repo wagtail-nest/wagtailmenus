@@ -1,13 +1,18 @@
 Changelog
 =========
 
-4.2.0 (Unreleased)
+4.2.0 (21.10.2026)
 ----------
 
 * Releases are now published to PyPI via Trusted Publishing from `wagtail-nest/wagtailmenus` ([#540](https://github.com/wagtail-nest/wagtailmenus/issues/540)).
 * Replaced `setup.py` with `pyproject.toml` ([#541](https://github.com/wagtail-nest/wagtailmenus/issues/541)).
 * Replaced the `testing`, `docs`, `development` and `deployment` extras with PEP 735 dependency groups (install with `pip install --group <name>`).
 * Removed `wagtailmenus.VERSION` and `wagtailmenus.stable_branch_name`; `wagtailmenus.__version__` is now read from the installed package metadata.
+* Updated the Sphinx docs to use the Wagtail theme ([#550](https://github.com/wagtail-nest/wagtailmenus/pull/550)).
+* Refactored nightly build failure reporting and enabled the nightly schedule ([#551](https://github.com/wagtail-nest/wagtailmenus/pull/551)).
+* Adopted the Wagtail Code of Conduct and updated repository references ([#552](https://github.com/wagtail-nest/wagtailmenus/pull/552)).
+* Added Dependabot configuration for GitHub Actions and pip, and bumped dependencies ([#553](https://github.com/wagtail-nest/wagtailmenus/pull/553), [#554](https://github.com/wagtail-nest/wagtailmenus/pull/554), [#555](https://github.com/wagtail-nest/wagtailmenus/pull/555)).
+* Added ruff and djhtml formatting tools ([#556](https://github.com/wagtail-nest/wagtailmenus/pull/556)).
 
 4.1.1 (08.10.2026)
 ----------
