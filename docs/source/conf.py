@@ -17,7 +17,7 @@
 import os
 import sys
 
-from wagtailmenus import VERSION, __version__
+from wagtailmenus import __version__
 
 sys.path.insert(0, os.path.abspath("."))
 
@@ -56,7 +56,7 @@ author = "Andy Babic"
 # built documents.
 
 # The short X.Y version.
-version = f"{VERSION[0]}.{VERSION[1]}"
+version = ".".join(__version__.split(".")[:2])
 # The full version, including alpha/beta/rc tags.
 release = __version__
 

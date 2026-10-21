@@ -23,8 +23,8 @@ Follow the steps outlined below to prep changes in your fork:
 
         git checkout -b release-prep/2.X.X
 
-3.  Update ``__version__`` in ``wagtailmenus/__init__.py`` to reflect the new
-    release version.
+3.  Update ``version`` in ``pyproject.toml`` to reflect the new release
+    version.
 
 4.  Make sure ``CHANGELOG.md`` is updated with details of any changes since
     the last release.
@@ -107,7 +107,7 @@ When satisfied with the PR for preparing the files:
 
     .. code-block:: console
 
-        pip install -e '.[deployment]' -U
+        pip install -U build twine
 
 4.  Create a new tag for the new version and push that too. Github Actions should deploy the new version directly to PyPI once it's finished building:
 
