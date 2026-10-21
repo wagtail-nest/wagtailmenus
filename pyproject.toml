@@ -35,7 +35,7 @@ classifiers = [
 ]
 dependencies = [
     "wagtail>=7.0",
-    "django-cogwheels>=0.3",
+    "django-cogwheels==0.3",
 ]
 
 [project.urls]
