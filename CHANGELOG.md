@@ -4,6 +4,7 @@ Changelog
 4.2.0 (Unreleased)
 ----------
 
+* Releases are now published to PyPI via Trusted Publishing from `wagtail-nest/wagtailmenus` ([#540](https://github.com/wagtail-nest/wagtailmenus/issues/540)).
 * Replaced `setup.py` with `pyproject.toml` ([#541](https://github.com/wagtail-nest/wagtailmenus/issues/541)).
 * Replaced the `testing`, `docs`, `development` and `deployment` extras with PEP 735 dependency groups (install with `pip install --group <name>`).
 * Removed `wagtailmenus.VERSION` and `wagtailmenus.stable_branch_name`; `wagtailmenus.__version__` is now read from the installed package metadata.

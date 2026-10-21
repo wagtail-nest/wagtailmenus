@@ -30,13 +30,13 @@ Follow the steps outlined below to prep changes in your fork:
     the last release.
 
 5.  Make sure the release notes for the new version have been created /
-    updated in ``docs/source/releases/`` and are referenced in 
-    ``docs/source/releases/index.rst``. Be sure to remove the '(alpha)' or 
+    updated in ``docs/source/releases/`` and are referenced in
+    ``docs/source/releases/index.rst``. Be sure to remove the '(alpha)' or
     '(beta)' from the heading in the latest release notes, as well as the
     'Wagtailmenus X.X is in the alpha stage of development' just below.
 
-6.  If releasing a 'final' version, following an 'alpha' or 'beta' release, 
-    ensure the ``a`` or ``b`` is removed from the file name for the release, 
+6.  If releasing a 'final' version, following an 'alpha' or 'beta' release,
+    ensure the ``a`` or ``b`` is removed from the file name for the release,
     and the reference to it in ``docs/source/releases/index.rst``.
 
 7.  ``cd`` into the ``docs`` directory to check documentation-related stuff:
@@ -61,9 +61,9 @@ Follow the steps outlined below to prep changes in your fork:
 10. Commit changes so far:
 
     .. code-block:: console
-    
+
         git commit -am 'Bumped version and updated release notes'
-       
+
 11. Update the source translation files by running the following from the
     project's root directory:
 
@@ -78,7 +78,7 @@ Follow the steps outlined below to prep changes in your fork:
 12. Push all outstanding changes to GitHub:
 
     .. code-block:: console
-    
+
         git push
 
 13. Submit your changes as a PR to the main repository via
@@ -94,30 +94,55 @@ When satisfied with the PR for preparing the files:
     ``main`` branch using the "merge commit" option.
 
 2.  Locally, ``cd`` to the project's root directory, checkout the ``main``
-    branch, and ensure the local copy is up-to-date: 
+    branch, and ensure the local copy is up-to-date:
 
     .. code-block:: console
-        
+
         source .venv/bin/activate
         cd ../path-to-original-repo
         git checkout main
         git pull
 
-3.  Ensure dependencies are up-to-date by running:
+3.  Optionally, check the package builds cleanly locally:
 
     .. code-block:: console
 
         pip install -U build twine
+        python -m build
+        twine check dist/*
 
-4.  Create a new tag for the new version and push that too. Github Actions should deploy the new version directly to PyPI once it's finished building:
+4.  Create a new tag for the new version and push it:
 
     .. code-block:: console
-        
+
         git tag -a v2.X
         git push --tags
 
-5. Edit the release notes for the release from
-    https://github.com/wagtail-nest/wagtailmenus/releases, by copying and pasting
-    the content from ``docs/releases/x.x.x.rst``
+5.  Create a release from that tag at
+    https://github.com/wagtail-nest/wagtailmenus/releases/new, copying and
+    pasting the content from ``docs/releases/x.x.x.rst`` as the release notes.
 
-6. Crack open a beer - you earned it!
+6.  Publishing the GitHub release triggers the ``Release`` workflow
+    (``.github/workflows/release.yml``), which builds the package and uploads it to PyPI.
+
+7.  Crack open a beer - you earned it!
+
+
+Trusted Publisher configuration
+===============================
+
+This only needs to be done once, by an owner of the project on PyPI:
+
+1.  In the repository's *Settings → Environments*, create an environment named
+    ``pypi`` (optionally requiring review by a maintainer).
+
+2.  On PyPI, go to the ``wagtailmenus`` project's *Publishing* settings and add
+    a GitHub trusted publisher with the following values:
+
+    * Owner: ``wagtail-nest``
+    * Repository: ``wagtailmenus``
+    * Workflow name: ``release.yml``
+    * Environment name: ``pypi``
+
+3.  Make sure the project belongs to the Wagtail Nest PyPI organisation and that
+    at least one or two other maintainers have access to it.
