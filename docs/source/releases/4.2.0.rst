@@ -1,0 +1,26 @@
+===============================================
+Wagtailmenus 4.2.0 release notes (21.10.2026)
+===============================================
+
+.. contents::
+    :local:
+    :depth: 1
+
+
+What's new?
+===========
+
+There are no new major features in this release.
+
+Minor changes & bug fixes
+=========================
+
+* Releases are now published to PyPI via Trusted Publishing from ``wagtail-nest/wagtailmenus``.
+* Replaced ``setup.py`` with ``pyproject.toml``.
+* Replaced the ``testing``, ``docs``, ``development`` and ``deployment`` extras with PEP 735 dependency groups (install with ``pip install --group <name>``).
+* Removed ``wagtailmenus.VERSION`` and ``wagtailmenus.stable_branch_name``; ``wagtailmenus.__version__`` is now read from the installed package metadata.
+* Updated the Sphinx docs to use the Wagtail theme.
+* Refactored nightly build failure reporting and enabled the nightly schedule.
+* Adopted the Wagtail Code of Conduct and updated repository references.
+* Added Dependabot configuration for GitHub Actions and pip, and bumped dependencies.
+* Added ruff and djhtml formatting tools.
